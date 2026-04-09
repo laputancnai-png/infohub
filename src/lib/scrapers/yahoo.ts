@@ -1,109 +1,87 @@
 import type { Quote } from '../types';
-import https from 'https';
-import { IncomingMessage } from 'http';
 
-interface SymbolConfig {
-  symbol: string;
-  name: string;
-  nameZh: string;
-  group: Quote['group'];
-}
-
-const SYMBOLS: SymbolConfig[] = [
-  { symbol: '^GSPC', name: 'S&P 500', nameZh: '标普500', group: 'us' },
-  { symbol: '^IXIC', name: 'NASDAQ', nameZh: '纳斯达克', group: 'us' },
-  { symbol: '^DJI', name: 'Dow Jones', nameZh: '道琼斯', group: 'us' },
+// ── Stooq symbols for international markets ─────────────────────────────────
+const STOOQ_SYMBOLS: Array<{ symbol: string; name: string; nameZh: string; group: Quote['group'] }> = [
+  { symbol: '^SPX', name: 'S&P 500',   nameZh: '标普500',  group: 'us' },
+  { symbol: '^NDQ', name: 'NASDAQ',    nameZh: '纳斯达克', group: 'us' },
+  { symbol: '^DJI', name: 'Dow Jones', nameZh: '道琼斯',   group: 'us' },
   { symbol: '^HSI', name: 'Hang Seng', nameZh: '恒生指数', group: 'hk' },
-  { symbol: '000001.SS', name: 'SSE Comp.', nameZh: '上证综指', group: 'cn' },
-  { symbol: '399001.SZ', name: 'SZSE Comp.', nameZh: '深证成指', group: 'cn' },
-  { symbol: 'GC=F', name: 'Gold XAU', nameZh: '黄金', group: 'commodity' },
-  { symbol: 'CL=F', name: 'WTI Oil', nameZh: 'WTI原油', group: 'commodity' },
-  { symbol: 'DX-Y.NYB', name: 'USD Index', nameZh: '美元指数', group: 'fx' },
+  { symbol: 'GC.F', name: 'Gold XAU',  nameZh: '黄金',     group: 'commodity' },
+  { symbol: 'CL.F', name: 'WTI Oil',   nameZh: 'WTI原油',  group: 'commodity' },
+  { symbol: 'DX.F', name: 'USD Index', nameZh: '美元指数', group: 'fx' },
 ];
 
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
+// ── Tencent Finance for A-share indices (accessible from mainland servers) ───
+const TENCENT_SYMBOLS: Array<{ code: string; name: string; nameZh: string; group: Quote['group'] }> = [
+  { code: 's_sh000001', name: 'SSE Comp.',  nameZh: '上证综指', group: 'cn' },
+  { code: 's_sz399001', name: 'SZSE Comp.', nameZh: '深证成指', group: 'cn' },
+];
 
-// Use Node.js https module to bypass undici's header overflow limitation
-function httpsGet(url: string, headers: Record<string, string>): Promise<{ body: string; cookies: string[] }> {
-  return new Promise((resolve, reject) => {
-    const parsed = new URL(url);
-    const options = {
-      hostname: parsed.hostname,
-      path: parsed.pathname + parsed.search,
-      headers: { 'User-Agent': UA, ...headers },
-      timeout: 15000,
+async function fetchStooqQuote(sym: typeof STOOQ_SYMBOLS[0]): Promise<Quote> {
+  const url = `https://stooq.com/q/l/?s=${encodeURIComponent(sym.symbol)}&f=sd2t2ohlcvp&h&e=csv`;
+  const blank = (): Quote => ({ symbol: sym.symbol, name: sym.name, nameZh: sym.nameZh, value: '—', change: '—', up: true, group: sym.group });
+  try {
+    const res = await fetch(url, { next: { revalidate: 0 } });
+    if (!res.ok) return blank();
+    const text = await res.text();
+    const lines = text.trim().split('\n');
+    if (lines.length < 2) return blank();
+    // CSV: Symbol,Date,Time,Open,High,Low,Close,Volume,Prev
+    const parts = lines[1].split(',');
+    if (parts[6] === 'N/D' || !parts[6]) return blank();
+    const close = parseFloat(parts[6]);
+    const prev = parseFloat(parts[8]);
+    if (!prev || isNaN(close) || isNaN(prev)) return blank();
+    const changePct = ((close - prev) / prev) * 100;
+    const up = changePct >= 0;
+    return {
+      symbol: sym.symbol,
+      name: sym.name,
+      nameZh: sym.nameZh,
+      value: formatPrice(close),
+      change: `${up ? '+' : ''}${changePct.toFixed(2)}%`,
+      up,
+      group: sym.group,
     };
-    const req = https.get(options, (res: IncomingMessage) => {
-      const cookies: string[] = [];
-      const raw = res.rawHeaders;
-      for (let i = 0; i < raw.length - 1; i += 2) {
-        if (raw[i].toLowerCase() === 'set-cookie') cookies.push(raw[i + 1]);
-      }
-      const chunks: Buffer[] = [];
-      res.on('data', (c: Buffer) => chunks.push(c));
-      res.on('end', () => resolve({ body: Buffer.concat(chunks).toString(), cookies }));
-    });
-    req.on('error', reject);
-    req.on('timeout', () => { req.destroy(); reject(new Error('timeout')); });
-  });
+  } catch { return blank(); }
 }
 
-let _crumb: string | null = null;
-let _cookie: string | null = null;
-
-async function refreshCrumb(): Promise<void> {
-  const { cookies } = await httpsGet('https://finance.yahoo.com/quote/%5EGSPC/', {});
-  // Take only first 6 key=value pairs to keep cookie header small
-  const cookie = cookies.slice(0, 6).map(c => c.split(';')[0].trim()).join('; ');
-
-  const { body } = await httpsGet('https://query1.finance.yahoo.com/v1/test/getcrumb', { Cookie: cookie });
-  if (!body || body.includes('<') || body.length > 50) throw new Error('Failed to get Yahoo crumb');
-  _crumb = body.trim();
-  _cookie = cookie;
+async function fetchTencentQuotes(): Promise<Quote[]> {
+  const codes = TENCENT_SYMBOLS.map(s => s.code).join(',');
+  const blank = (s: typeof TENCENT_SYMBOLS[0]): Quote => ({ symbol: s.code, name: s.name, nameZh: s.nameZh, value: '—', change: '—', up: true, group: s.group });
+  try {
+    const res = await fetch(`https://qt.gtimg.cn/q=${codes}`, { next: { revalidate: 0 } });
+    if (!res.ok) return TENCENT_SYMBOLS.map(blank);
+    const text = await res.text();
+    return TENCENT_SYMBOLS.map(sym => {
+      const match = text.match(new RegExp(`v_${sym.code}="[^"]*~([\\d.]+)~([\\d.-]+)~([\\d.-]+)`));
+      if (!match) return blank(sym);
+      const value = parseFloat(match[1]);
+      const changePct = parseFloat(match[3]);
+      const up = changePct >= 0;
+      return {
+        symbol: sym.code,
+        name: sym.name,
+        nameZh: sym.nameZh,
+        value: formatPrice(value),
+        change: `${up ? '+' : ''}${changePct.toFixed(2)}%`,
+        up,
+        group: sym.group,
+      };
+    });
+  } catch { return TENCENT_SYMBOLS.map(blank); }
 }
 
 export async function fetchYahooQuotes(): Promise<Quote[]> {
-  if (!_crumb || !_cookie) await refreshCrumb();
+  const [stooqResults, tencentResults] = await Promise.all([
+    Promise.all(STOOQ_SYMBOLS.map(fetchStooqQuote)),
+    fetchTencentQuotes(),
+  ]);
 
-  const symbolStr = SYMBOLS.map(s => encodeURIComponent(s.symbol)).join('%2C');
-  const url = `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&crumb=${encodeURIComponent(_crumb!)}&fields=regularMarketPrice,regularMarketChangePercent&formatted=false`;
-
-  let { body } = await httpsGet(url, { Cookie: _cookie!, Accept: 'application/json' });
-
-  // If response looks like an auth error, refresh and retry
-  if (body.includes('"code":"Too Many Requests"') || body.includes('"error"')) {
-    _crumb = null;
-    _cookie = null;
-    await refreshCrumb();
-    const retry = await httpsGet(
-      `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&crumb=${encodeURIComponent(_crumb!)}&fields=regularMarketPrice,regularMarketChangePercent&formatted=false`,
-      { Cookie: _cookie!, Accept: 'application/json' }
-    );
-    body = retry.body;
-  }
-
-  const data = JSON.parse(body) as Record<string, unknown>;
-  const results: Record<string, unknown>[] =
-    ((data.quoteResponse as Record<string, unknown>)?.result as Record<string, unknown>[]) ?? [];
-
-  return SYMBOLS.map(cfg => {
-    const r = results.find((q: Record<string, unknown>) => q.symbol === cfg.symbol);
-    if (!r) {
-      return { symbol: cfg.symbol, name: cfg.name, nameZh: cfg.nameZh, value: '—', change: '—', up: true, group: cfg.group };
-    }
-    const price = (r.regularMarketPrice as number) ?? 0;
-    const changePct = (r.regularMarketChangePercent as number) ?? 0;
-    const up = changePct >= 0;
-    return {
-      symbol: cfg.symbol,
-      name: cfg.name,
-      nameZh: cfg.nameZh,
-      value: formatPrice(price),
-      change: `${up ? '+' : ''}${changePct.toFixed(2)}%`,
-      up,
-      group: cfg.group,
-    };
-  });
+  // Preserve display order: US, HK, CN, Commodity, FX
+  const all = [...stooqResults, ...tencentResults];
+  const order: Quote['group'][] = ['us', 'hk', 'cn', 'commodity', 'fx'];
+  return order.flatMap(g => all.filter(q => q.group === g));
 }
 
 function formatPrice(n: number): string {
