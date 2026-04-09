@@ -19,7 +19,7 @@ async function logDonate(method: PayMethod) {
 const EXTERNAL_LINKS: Record<PayMethod, string> = {
   wechat:  '#wechat-qr',
   alipay:  '#alipay-qr',
-  paypal:  'https://paypal.me/',
+  paypal:  'https://paypal.me/laputancn',
   bmc:     'https://buymeacoffee.com/',
 };
 
