@@ -15,7 +15,7 @@ ssh "$PROD" "
   cd $APP_DIR
   git fetch origin
   git reset --hard origin/master
-  npm install --omit=dev
+  npm install
   npm run build
   systemctl restart infohub
   sleep 3
