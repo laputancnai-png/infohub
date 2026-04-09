@@ -1,4 +1,6 @@
 import type { Quote } from '../types';
+import https from 'https';
+import { IncomingMessage } from 'http';
 
 interface SymbolConfig {
   symbol: string;
@@ -21,69 +23,66 @@ const SYMBOLS: SymbolConfig[] = [
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 
-// Cache crumb + cookie for the process lifetime (refreshed on 401)
+// Use Node.js https module to bypass undici's header overflow limitation
+function httpsGet(url: string, headers: Record<string, string>): Promise<{ body: string; cookies: string[] }> {
+  return new Promise((resolve, reject) => {
+    const parsed = new URL(url);
+    const options = {
+      hostname: parsed.hostname,
+      path: parsed.pathname + parsed.search,
+      headers: { 'User-Agent': UA, ...headers },
+      timeout: 15000,
+    };
+    const req = https.get(options, (res: IncomingMessage) => {
+      const cookies: string[] = [];
+      const raw = res.rawHeaders;
+      for (let i = 0; i < raw.length - 1; i += 2) {
+        if (raw[i].toLowerCase() === 'set-cookie') cookies.push(raw[i + 1]);
+      }
+      const chunks: Buffer[] = [];
+      res.on('data', (c: Buffer) => chunks.push(c));
+      res.on('end', () => resolve({ body: Buffer.concat(chunks).toString(), cookies }));
+    });
+    req.on('error', reject);
+    req.on('timeout', () => { req.destroy(); reject(new Error('timeout')); });
+  });
+}
+
 let _crumb: string | null = null;
 let _cookie: string | null = null;
 
-async function fetchCrumb(): Promise<{ crumb: string; cookie: string }> {
-  // Step 1: get essential cookies (only A1, A3, A1S, cmp, euconsent)
-  const consentRes = await fetch('https://finance.yahoo.com/quote/%5EGSPC/', {
-    headers: { 'User-Agent': UA, 'Accept': 'text/html' },
-    redirect: 'follow',
-  });
+async function refreshCrumb(): Promise<void> {
+  const { cookies } = await httpsGet('https://finance.yahoo.com/quote/%5EGSPC/', {});
+  // Take only first 6 key=value pairs to keep cookie header small
+  const cookie = cookies.slice(0, 6).map(c => c.split(';')[0].trim()).join('; ');
 
-  // Extract only key=value from each Set-Cookie, limit to first 5 cookies to avoid overflow
-  const rawCookies: string[] = [];
-  consentRes.headers.forEach((value, name) => {
-    if (name.toLowerCase() === 'set-cookie') {
-      const kv = value.split(';')[0].trim();
-      if (kv) rawCookies.push(kv);
-    }
-  });
-  const cookie = rawCookies.slice(0, 5).join('; ');
-
-  // Step 2: get crumb
-  const crumbRes = await fetch('https://query1.finance.yahoo.com/v1/test/getcrumb', {
-    headers: { 'User-Agent': UA, 'Cookie': cookie },
-  });
-  const crumb = await crumbRes.text();
-  if (!crumb || crumb.includes('<')) throw new Error('Failed to get Yahoo crumb');
-  return { crumb: crumb.trim(), cookie };
+  const { body } = await httpsGet('https://query1.finance.yahoo.com/v1/test/getcrumb', { Cookie: cookie });
+  if (!body || body.includes('<') || body.length > 50) throw new Error('Failed to get Yahoo crumb');
+  _crumb = body.trim();
+  _cookie = cookie;
 }
 
 export async function fetchYahooQuotes(): Promise<Quote[]> {
-  // Fetch crumb if not cached
-  if (!_crumb || !_cookie) {
-    const result = await fetchCrumb();
-    _crumb = result.crumb;
-    _cookie = result.cookie;
-  }
+  if (!_crumb || !_cookie) await refreshCrumb();
 
   const symbolStr = SYMBOLS.map(s => encodeURIComponent(s.symbol)).join('%2C');
-  const url = `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&crumb=${encodeURIComponent(_crumb)}&fields=regularMarketPrice,regularMarketChangePercent&formatted=false`;
+  const url = `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&crumb=${encodeURIComponent(_crumb!)}&fields=regularMarketPrice,regularMarketChangePercent&formatted=false`;
 
-  let res = await fetch(url, {
-    headers: { 'User-Agent': UA, 'Cookie': _cookie, 'Accept': 'application/json' },
-    next: { revalidate: 0 },
-  });
+  let { body } = await httpsGet(url, { Cookie: _cookie!, Accept: 'application/json' });
 
-  // If 401, refresh crumb and retry once
-  if (res.status === 401) {
+  // If response looks like an auth error, refresh and retry
+  if (body.includes('"code":"Too Many Requests"') || body.includes('"error"')) {
     _crumb = null;
     _cookie = null;
-    const result = await fetchCrumb();
-    _crumb = result.crumb;
-    _cookie = result.cookie;
-    const retryUrl = `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&crumb=${encodeURIComponent(_crumb)}&fields=regularMarketPrice,regularMarketChangePercent&formatted=false`;
-    res = await fetch(retryUrl, {
-      headers: { 'User-Agent': UA, 'Cookie': _cookie, 'Accept': 'application/json' },
-      next: { revalidate: 0 },
-    });
+    await refreshCrumb();
+    const retry = await httpsGet(
+      `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&crumb=${encodeURIComponent(_crumb!)}&fields=regularMarketPrice,regularMarketChangePercent&formatted=false`,
+      { Cookie: _cookie!, Accept: 'application/json' }
+    );
+    body = retry.body;
   }
 
-  if (!res.ok) throw new Error(`Yahoo Finance fetch failed: ${res.status}`);
-
-  const data = (await res.json()) as Record<string, unknown>;
+  const data = JSON.parse(body) as Record<string, unknown>;
   const results: Record<string, unknown>[] =
     ((data.quoteResponse as Record<string, unknown>)?.result as Record<string, unknown>[]) ?? [];
 
