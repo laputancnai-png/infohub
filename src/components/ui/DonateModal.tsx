@@ -71,9 +71,12 @@ export function DonateModal({ open, onClose }: DonateModalProps) {
 
         {(tab === 'wechat' || tab === 'alipay') && (
           <div className="flex flex-col items-center gap-3 bg-white rounded-2xl p-5 mb-4">
-            <div className="w-36 h-36 bg-[#f5f5f7] rounded-xl flex items-center justify-center text-sm text-[#aaa]">
-              QR Code
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={tab === 'wechat' ? '/qr-wechat.jpg' : '/qr-alipay.png'}
+              alt={tab === 'wechat' ? '微信收款码' : '支付宝收款码'}
+              className="w-44 h-44 object-contain rounded-xl"
+            />
             <p className="text-sm text-[#555] font-medium">扫码打赏 · Scan to donate</p>
             <p className="text-xs text-[#aaa]">金额随意 · Any amount welcome</p>
           </div>
