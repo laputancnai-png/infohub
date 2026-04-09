@@ -1,0 +1,7 @@
+{
+  "crons": [
+    { "path": "/api/cron/github",  "schedule": "0 */2 * * *"  },
+    { "path": "/api/cron/news",    "schedule": "*/30 * * * *" },
+    { "path": "/api/cron/finance", "schedule": "*/15 * * * *" }
+  ]
+}
