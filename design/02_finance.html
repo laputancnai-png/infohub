@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laputan Info Hub — Finance</title>
+<style>
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.3} }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,'SF Pro Text','Helvetica Neue',Arial,sans-serif; background:#f5f5f7; min-height:100vh; }
+  nav { background:rgba(255,255,255,0.72); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:0.5px solid rgba(0,0,0,0.08); padding:0 32px; height:52px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-brand { font-size:16px; font-weight:600; color:#1d1d1f; letter-spacing:-0.3px; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-link { font-size:13px; color:#555; padding:6px 14px; border-radius:20px; cursor:pointer; text-decoration:none; transition:background .15s; }
+  .nav-link.active { background:#1d1d1f; color:#fff; }
+  .nav-link:hover:not(.active) { background:rgba(0,0,0,0.06); }
+  .lang-btn { font-size:12px; color:#888; padding:5px 12px; border:0.5px solid #d0d0d5; border-radius:20px; cursor:pointer; background:transparent; }
+  .ticker-wrap { background:#0a0a14; overflow:hidden; height:34px; display:flex; align-items:center; }
+  .live-dot { width:5px; height:5px; border-radius:50%; background:#1aff8c; animation:pulse-dot 1.5s ease-in-out infinite; flex-shrink:0; margin:0 14px; }
+  .ticker-inner { display:flex; white-space:nowrap; animation:ticker 50s linear infinite; }
+  .tick-item { display:inline-flex; align-items:center; gap:6px; padding:0 24px; font-size:12px; font-family:'SF Mono',Menlo,monospace; }
+  .tick-name { color:rgba(255,255,255,0.4); }
+  .tick-val { color:rgba(255,255,255,0.85); font-weight:500; }
+  .tick-up { color:#1aff8c; }
+  .tick-dn { color:#ff4d6a; }
+  .tick-sep { color:rgba(255,255,255,0.1); padding:0 4px; }
+  main { max-width:1200px; margin:0 auto; padding:28px 32px 80px; }
+
+  /* MARKET GRID */
+  .market-section { margin-bottom:32px; }
+  .market-group-title { font-size:12px; font-weight:500; color:#999; letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px; }
+  .market-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:20px; }
+  .market-grid-3 { grid-template-columns:repeat(3,1fr); }
+  @media(max-width:900px){ .market-grid { grid-template-columns:repeat(3,1fr); } .market-grid-3{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:600px){ .market-grid,.market-grid-3{grid-template-columns:repeat(2,1fr);} }
+  .market-card { background:rgba(255,255,255,0.72); backdrop-filter:blur(10px); border:0.5px solid rgba(255,255,255,0.85); border-radius:12px; padding:14px 14px 12px; position:relative; overflow:hidden; }
+  .market-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.9),transparent); }
+  .market-name { font-size:11px; color:#999; margin-bottom:6px; }
+  .market-val { font-size:20px; font-weight:600; color:#1d1d1f; letter-spacing:-0.5px; line-height:1; margin-bottom:4px; }
+  .market-delta { font-size:12px; font-weight:500; }
+  .up { color:#1aad64; }
+  .dn { color:#e0364f; }
+
+  .divider { height:0.5px; background:rgba(0,0,0,0.07); margin:28px 0; }
+  .sec-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px; }
+  .sec-title { font-size:18px; font-weight:600; color:#1d1d1f; letter-spacing:-0.3px; }
+  .sec-meta { font-size:12px; color:#aaa; }
+  .tabs { display:flex; gap:6px; margin-bottom:20px; }
+  .tab { font-size:13px; padding:7px 16px; border-radius:20px; border:0.5px solid #d0d0d5; color:#555; background:#fff; cursor:pointer; transition:all .15s; }
+  .tab.active { background:#1d1d1f; color:#fff; border-color:#1d1d1f; }
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  @media(max-width:600px){ .grid2{grid-template-columns:1fr;} }
+  .news-card { background:rgba(255,255,255,0.7); backdrop-filter:blur(12px); border:0.5px solid rgba(255,255,255,0.85); border-radius:14px; padding:18px; cursor:pointer; transition:all .2s; position:relative; overflow:hidden; }
+  .news-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.9),transparent); }
+  .news-card:hover { background:rgba(255,255,255,0.9); transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,0.08); }
+  .news-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .src-badge { font-size:10px; font-weight:500; padding:3px 9px; border-radius:20px; }
+  .src-bloom { background:#1a3880; color:#fff; }
+  .src-reuters { background:#f60; color:#fff; }
+  .src-wsj { background:#1a1a1a; color:#fff; }
+  .src-eastmoney { background:#c00; color:#fff; }
+  .src-xueqiu { background:#3cb878; color:#fff; }
+  .src-caixin { background:#005bac; color:#fff; }
+  .news-time { font-size:10px; color:#bbb; }
+  .news-title { font-size:13px; font-weight:500; color:#1d1d1f; line-height:1.45; margin-bottom:6px; }
+  .news-desc { font-size:11px; color:#888; line-height:1.4; }
+  .fab { position:fixed; bottom:28px; right:28px; display:flex; align-items:center; gap:8px; background:#1d1d1f; color:#fff; font-size:14px; font-weight:500; padding:13px 22px; border-radius:50px; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,0.2); z-index:200; transition:all .2s; border:none; }
+  .fab:hover { transform:scale(1.04); }
+  footer { background:rgba(255,255,255,0.6); backdrop-filter:blur(12px); border-top:0.5px solid rgba(0,0,0,0.08); padding:24px 32px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+  .footer-info { font-size:12px; color:#999; line-height:1.7; }
+  .footer-info a { color:#4d9fff; text-decoration:none; }
+  .donate-strip { display:flex; align-items:center; gap:8px; }
+  .donate-label { font-size:11px; color:#aaa; margin-right:4px; }
+  .donate-btn { font-size:12px; font-weight:500; padding:7px 16px; border-radius:20px; border:0.5px solid #d0d0d5; color:#555; background:rgba(255,255,255,0.8); cursor:pointer; transition:all .15s; }
+  .donate-btn:hover { background:#1d1d1f; color:#fff; border-color:#1d1d1f; }
+  @media(prefers-color-scheme:dark){
+    body{background:#1c1c1e;} nav{background:rgba(28,28,30,0.72);border-color:rgba(255,255,255,0.08);} .nav-brand{color:#f5f5f7;} .nav-link{color:#aaa;} .nav-link.active{background:#f5f5f7;color:#1d1d1f;} .tab{background:#2c2c2e;border-color:#3a3a3c;color:#aaa;} .tab.active{background:#f5f5f7;color:#1d1d1f;} .market-card,.news-card{background:rgba(44,44,46,0.7);border-color:rgba(255,255,255,0.08);} .market-val,.news-title,.sec-title{color:#f5f5f7;} .divider{background:rgba(255,255,255,0.08);} footer{background:rgba(28,28,30,0.6);border-color:rgba(255,255,255,0.08);} .donate-btn{background:rgba(44,44,46,0.8);border-color:#3a3a3c;color:#aaa;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="01_homepage.html">
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+      <rect x="0" y="0" width="9" height="9" rx="2.5" fill="rgba(130,70,255,0.75)" stroke="rgba(200,160,255,0.6)" stroke-width=".6"/>
+      <rect x="10" y="0" width="9" height="9" rx="2.5" fill="rgba(255,50,110,0.75)" stroke="rgba(255,140,180,0.6)" stroke-width=".6"/>
+      <rect x="20" y="0" width="10" height="9" rx="2.5" fill="rgba(255,130,20,0.75)" stroke="rgba(255,200,100,0.6)" stroke-width=".6"/>
+      <rect x="0" y="10" width="9" height="9" rx="2.5" fill="rgba(20,195,110,0.75)" stroke="rgba(90,240,165,0.6)" stroke-width=".6"/>
+      <rect x="10" y="10" width="9" height="9" rx="2.5" fill="rgba(20,150,255,0.75)" stroke="rgba(100,205,255,0.6)" stroke-width=".6"/>
+      <rect x="20" y="10" width="10" height="9" rx="2.5" fill="rgba(255,210,20,0.75)" stroke="rgba(255,238,110,0.6)" stroke-width=".6"/>
+      <rect x="0" y="20" width="9" height="10" rx="2.5" fill="rgba(255,50,195,0.75)" stroke="rgba(255,140,230,0.6)" stroke-width=".6"/>
+      <text x="3" y="8" font-size="6.5" font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">L</text>
+      <text x="13" y="8" font-size="6" font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">A</text>
+      <text x="23" y="8" font-size="6" font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">P</text>
+      <text x="3" y="18" font-size="6" font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">U</text>
+      <text x="13" y="18" font-size="6" font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">T</text>
+      <text x="23" y="18" font-size="6" font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">A</text>
+      <text x="3" y="29" font-size="6" font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">N</text>
+    </svg>
+    <span class="nav-brand">Laputan Info Hub</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="01_homepage.html">AI Tech</a>
+    <a class="nav-link active" href="#">Finance</a>
+  </div>
+  <button class="lang-btn">EN | 中</button>
+</nav>
+<div class="ticker-wrap">
+  <div class="live-dot"></div>
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+<main>
+  <div class="market-section">
+    <div class="market-group-title">美股 · US Markets</div>
+    <div class="market-grid">
+      <div class="market-card"><div class="market-name">S&P 500</div><div class="market-val">5,218</div><div class="market-delta up">+0.42%</div></div>
+      <div class="market-card"><div class="market-name">NASDAQ</div><div class="market-val">16,384</div><div class="market-delta dn">−0.18%</div></div>
+      <div class="market-card"><div class="market-name">Dow Jones</div><div class="market-val">38,904</div><div class="market-delta up">+0.27%</div></div>
+      <div class="market-card"><div class="market-name">VIX 恐慌指数</div><div class="market-val">14.82</div><div class="market-delta dn">−3.21%</div></div>
+      <div class="market-card"><div class="market-name">Russell 2000</div><div class="market-val">2,041</div><div class="market-delta up">+0.55%</div></div>
+    </div>
+    <div class="market-group-title">港股 · 大陆 · HK & CN Markets</div>
+    <div class="market-grid">
+      <div class="market-card"><div class="market-name">恒生 HSI</div><div class="market-val">18,202</div><div class="market-delta up">+1.03%</div></div>
+      <div class="market-card"><div class="market-name">上证 SSE</div><div class="market-val">3,241</div><div class="market-delta up">+0.27%</div></div>
+      <div class="market-card"><div class="market-name">深证 SZI</div><div class="market-val">10,124</div><div class="market-delta dn">−0.14%</div></div>
+      <div class="market-card"><div class="market-name">沪深 300</div><div class="market-val">3,782</div><div class="market-delta up">+0.31%</div></div>
+      <div class="market-card"><div class="market-name">科创 50</div><div class="market-val">892</div><div class="market-delta dn">−0.22%</div></div>
+    </div>
+    <div class="market-group-title">大宗商品 · 汇率 · Commodities & FX</div>
+    <div class="market-grid market-grid-3">
+      <div class="market-card"><div class="market-name">Gold XAU/USD</div><div class="market-val">2,318</div><div class="market-delta up">+0.61%</div></div>
+      <div class="market-card"><div class="market-name">Silver XAG/USD</div><div class="market-val">27.84</div><div class="market-delta up">+0.43%</div></div>
+      <div class="market-card"><div class="market-name">WTI Crude Oil</div><div class="market-val">82.41</div><div class="market-delta dn">−0.33%</div></div>
+      <div class="market-card"><div class="market-name">USD Index DXY</div><div class="market-val">104.2</div><div class="market-delta dn">−0.09%</div></div>
+      <div class="market-card"><div class="market-name">USD/CNY 美元人民币</div><div class="market-val">7.241</div><div class="market-delta dn">−0.05%</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="tabs">
+    <div class="tab active">全部 · All</div>
+    <div class="tab">美股 · US</div>
+    <div class="tab">A股港股 · CN/HK</div>
+  </div>
+  <div class="sec-header">
+    <span class="sec-title">财经资讯 · Financial News</span>
+    <span class="sec-meta">Bloomberg · Reuters · 东方财富 · 雪球</span>
+  </div>
+  <div class="grid2">
+    <div class="news-card"><div class="news-top"><span class="src-badge src-bloom">Bloomberg</span><span class="news-time">12 min ago</span></div><div class="news-title">Fed Signals Rate Path Depends on Inflation Progress, Meeting Minutes Show</div><div class="news-desc">Officials remained cautious about cutting rates too soon, emphasizing data dependency</div></div>
+    <div class="news-card"><div class="news-top"><span class="src-badge src-eastmoney">东方财富</span><span class="news-time">28 min ago</span></div><div class="news-title">A股三大指数集体收涨，科技板块领涨，半导体ETF大涨逾2%</div><div class="news-desc">北向资金今日净买入逾40亿元，外资持续加仓A股优质资产</div></div>
+    <div class="news-card"><div class="news-top"><span class="src-badge src-reuters">Reuters</span><span class="news-time">1h ago</span></div><div class="news-title">Gold hits new high as dollar weakens on soft US jobs data</div><div class="news-desc">Spot gold rose 0.8% to $2,331 per ounce in afternoon trading in New York</div></div>
+    <div class="news-card"><div class="news-top"><span class="src-badge src-xueqiu">雪球</span><span class="news-time">1.5h ago</span></div><div class="news-title">港股市场迎来估值修复行情，南向资金连续5日净流入</div><div class="news-desc">恒生科技指数大涨2.1%，互联网龙头股普遍走强</div></div>
+    <div class="news-card"><div class="news-top"><span class="src-badge src-wsj">WSJ</span><span class="news-time">2h ago</span></div><div class="news-title">Nvidia's AI Chip Demand Shows No Signs of Slowing, Analysts Say</div><div class="news-desc">Data center spending continues to surge as hyperscalers race to build AI infrastructure</div></div>
+    <div class="news-card"><div class="news-top"><span class="src-badge src-caixin">财新</span><span class="news-time">3h ago</span></div><div class="news-title">中国3月PMI数据超预期，制造业持续扩张势头</div><div class="news-desc">财新中国制造业PMI录得51.2，连续第六个月处于扩张区间</div></div>
+  </div>
+</main>
+
+<button class="fab">
+  <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 3C10 3 6 7.5 6 11a4 4 0 008 0c0-3.5-4-8-4-8z" fill="currentColor" opacity=".4"/><path d="M10 3C10 3 6 7.5 6 11a4 4 0 008 0c0-3.5-4-8-4-8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M10 15v2M8 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  Buy me a coffee
+</button>
+
+<footer>
+  <div class="footer-info">
+    <div style="font-weight:500;color:#555;margin-bottom:2px;">Laputan Info Hub · news.36techsolutions.com</div>
+    <div>Developed by Laputan YAO &nbsp;·&nbsp; <a href="https://github.com/laputancnai-png">GitHub</a> &nbsp;·&nbsp; laputancnai@gmail.com</div>
+  </div>
+  <div class="donate-strip">
+    <span class="donate-label">支持作者 / Support</span>
+    <button class="donate-btn">微信</button>
+    <button class="donate-btn">支付宝</button>
+    <button class="donate-btn">PayPal</button>
+  </div>
+</footer>
+<script>
+const ticks=[{n:'S&P 500',v:'5,218.20',d:'+0.42%',up:true},{n:'NASDAQ',v:'16,384.47',d:'−0.18%',up:false},{n:'恒生 HSI',v:'18,202.31',d:'+1.03%',up:true},{n:'上证 SSE',v:'3,241.82',d:'+0.27%',up:true},{n:'Gold XAU',v:'2,318.40',d:'+0.61%',up:true},{n:'WTI Oil',v:'82.41',d:'−0.33%',up:false},{n:'USD Index',v:'104.22',d:'−0.09%',up:false},{n:'Silver XAG',v:'27.84',d:'+0.43%',up:true}];
+const ticker=document.getElementById('ticker');
+const html=ticks.map(t=>`<span class="tick-item"><span class="tick-name">${t.n}</span><span class="tick-val">${t.v}</span><span class="${t.up?'tick-up':'tick-dn'}">${t.d}</span></span><span class="tick-sep">·</span>`).join('');
+ticker.innerHTML=html+html;
+</script>
+</body>
+</html>

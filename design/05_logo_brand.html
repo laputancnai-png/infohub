@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laputan Info Hub — Logo & Brand System</title>
+<style>
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  @keyframes shimmer { 0%,100%{opacity:.12} 50%{opacity:.35} }
+  @keyframes drift { 0%{transform:translateX(0) translateY(0)} 33%{transform:translateX(10px) translateY(-6px)} 66%{transform:translateX(-6px) translateY(8px)} 100%{transform:translateX(0) translateY(0)} }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,'SF Pro Text','Helvetica Neue',Arial,sans-serif; background:#0a0a14; color:#f5f5f7; min-height:100vh; padding:48px 32px; }
+  .label { font-size:10px; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:16px; }
+  .section { margin-bottom:56px; }
+  .hero { display:flex; justify-content:center; align-items:center; padding:64px 32px; background:rgba(255,255,255,0.02); border:0.5px solid rgba(255,255,255,0.06); border-radius:24px; margin-bottom:56px; position:relative; overflow:hidden; }
+  .drift-orb { position:absolute; border-radius:50%; animation:drift linear infinite; pointer-events:none; }
+  .star-dot { position:absolute; border-radius:50%; background:#fff; animation:shimmer ease-in-out infinite; }
+  .cluster-logo { animation:float 7s ease-in-out infinite; }
+  .variants { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  @media(max-width:700px){ .variants{grid-template-columns:repeat(2,1fr);} }
+  .variant-box { background:rgba(255,255,255,0.03); border:0.5px solid rgba(255,255,255,0.08); border-radius:16px; padding:24px 16px; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .variant-label { font-size:11px; color:rgba(255,255,255,0.35); text-align:center; }
+  .colors { display:flex; gap:10px; flex-wrap:wrap; }
+  .swatch { width:70px; display:flex; flex-direction:column; gap:6px; }
+  .swatch-color { height:48px; border-radius:10px; }
+  .swatch-name { font-size:10px; color:rgba(255,255,255,0.4); }
+  .swatch-hex { font-size:9px; color:rgba(255,255,255,0.25); }
+  .type-samples { display:flex; flex-direction:column; gap:14px; }
+  .type-row { display:flex; align-items:baseline; gap:16px; }
+  .type-meta { font-size:10px; color:rgba(255,255,255,0.3); min-width:140px; flex-shrink:0; }
+</style>
+</head>
+<body>
+
+<div class="label">Laputan Info Hub · Brand & Logo System</div>
+
+<!-- HERO LOGO -->
+<div class="hero">
+  <div class="drift-orb" style="width:200px;height:200px;background:radial-gradient(circle,rgba(130,70,255,0.12),transparent);top:-60px;left:-40px;animation-duration:20s;"></div>
+  <div class="drift-orb" style="width:160px;height:160px;background:radial-gradient(circle,rgba(255,50,110,0.10),transparent);bottom:-30px;right:60px;animation-duration:28s;"></div>
+  <div class="drift-orb" style="width:120px;height:120px;background:radial-gradient(circle,rgba(20,150,255,0.10),transparent);top:30px;right:20px;animation-duration:35s;"></div>
+  <div class="star-dot" style="width:2px;height:2px;top:15%;left:10%;animation-duration:3.2s;opacity:.4;"></div>
+  <div class="star-dot" style="width:1.5px;height:1.5px;top:70%;left:82%;animation-duration:2.8s;opacity:.35;animation-delay:.6s;"></div>
+  <div class="star-dot" style="width:2px;height:2px;top:25%;left:88%;animation-duration:4s;opacity:.3;animation-delay:1.2s;"></div>
+  <div class="star-dot" style="width:1px;height:1px;top:80%;left:18%;animation-duration:3.6s;opacity:.45;animation-delay:.3s;"></div>
+
+  <div class="cluster-logo">
+    <svg width="320" height="320" viewBox="0 0 320 320" style="overflow:visible;">
+      <defs>
+        <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <linearGradient id="shine-g" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+          <stop offset="50%" stop-color="rgba(255,255,255,0.05)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+      </defs>
+
+      <!-- L — center large -->
+      <g filter="url(#glow)" style="animation:float 6s ease-in-out infinite;">
+        <rect x="126" y="126" width="68" height="68" rx="18" fill="rgba(130,70,255,0.58)" stroke="rgba(200,160,255,0.65)" stroke-width="1.2"/>
+        <rect x="127" y="127" width="66" height="32" rx="16" fill="url(#shine-g)"/>
+        <text x="160" y="171" text-anchor="middle" font-size="36" font-weight="800" fill="rgba(255,255,255,0.97)" font-family="-apple-system,sans-serif">L</text>
+      </g>
+      <!-- A top-left -->
+      <g filter="url(#glow)" style="animation:float 7.2s ease-in-out infinite .4s;">
+        <rect x="50" y="50" width="60" height="60" rx="16" fill="rgba(255,45,110,0.55)" stroke="rgba(255,140,180,0.6)" stroke-width="1.2"/>
+        <rect x="51" y="51" width="58" height="28" rx="15" fill="url(#shine-g)"/>
+        <text x="80" y="89" text-anchor="middle" font-size="30" font-weight="800" fill="rgba(255,255,255,0.97)" font-family="-apple-system,sans-serif">A</text>
+      </g>
+      <!-- P top-center -->
+      <g filter="url(#glow)" style="animation:float 8s ease-in-out infinite .8s;">
+        <rect x="130" y="28" width="60" height="60" rx="16" fill="rgba(255,130,20,0.55)" stroke="rgba(255,200,100,0.6)" stroke-width="1.2"/>
+        <rect x="131" y="29" width="58" height="28" rx="15" fill="url(#shine-g)"/>
+        <text x="160" y="67" text-anchor="middle" font-size="30" font-weight="800" fill="rgba(255,255,255,0.97)" font-family="-apple-system,sans-serif">P</text>
+      </g>
+      <!-- U top-right -->
+      <g filter="url(#glow)" style="animation:float 7.5s ease-in-out infinite 1.2s;">
+        <rect x="210" y="50" width="60" height="60" rx="16" fill="rgba(20,195,110,0.55)" stroke="rgba(90,240,165,0.6)" stroke-width="1.2"/>
+        <rect x="211" y="51" width="58" height="28" rx="15" fill="url(#shine-g)"/>
+        <text x="240" y="89" text-anchor="middle" font-size="30" font-weight="800" fill="rgba(255,255,255,0.97)" font-family="-apple-system,sans-serif">U</text>
+      </g>
+      <!-- T right -->
+      <g filter="url(#glow)" style="animation:float 9s ease-in-out infinite .2s;">
+        <rect x="232" y="130" width="60" height="60" rx="16" fill="rgba(20,150,255,0.55)" stroke="rgba(100,205,255,0.6)" stroke-width="1.2"/>
+        <rect x="233" y="131" width="58" height="28" rx="15" fill="url(#shine-g)"/>
+        <text x="262" y="169" text-anchor="middle" font-size="30" font-weight="800" fill="rgba(255,255,255,0.97)" font-family="-apple-system,sans-serif">T</text>
+      </g>
+      <!-- A bottom-right -->
+      <g filter="url(#glow)" style="animation:float 6.5s ease-in-out infinite 1.6s;">
+        <rect x="210" y="210" width="60" height="60" rx="16" fill="rgba(255,210,20,0.55)" stroke="rgba(255,238,110,0.6)" stroke-width="1.2"/>
+        <rect x="211" y="211" width="58" height="28" rx="15" fill="url(#shine-g)"/>
+        <text x="240" y="249" text-anchor="middle" font-size="30" font-weight="800" fill="rgba(255,255,255,0.97)" font-family="-apple-system,sans-serif">A</text>
+      </g>
+      <!-- N bottom -->
+      <g filter="url(#glow)" style="animation:float 8.5s ease-in-out infinite 1s;">
+        <rect x="130" y="232" width="60" height="60" rx="16" fill="rgba(255,50,195,0.55)" stroke="rgba(255,140,230,0.6)" stroke-width="1.2"/>
+        <rect x="131" y="233" width="58" height="28" rx="15" fill="url(#shine-g)"/>
+        <text x="160" y="271" text-anchor="middle" font-size="30" font-weight="800" fill="rgba(255,255,255,0.97)" font-family="-apple-system,sans-serif">N</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- VARIANTS -->
+<div class="section">
+  <div class="label">Logo variants</div>
+  <div class="variants">
+    <!-- Navbar compact -->
+    <div class="variant-box">
+      <svg width="110" height="30" viewBox="0 0 110 30" fill="none">
+        <rect x="0"  y="1" width="28" height="28" rx="7" fill="rgba(130,70,255,0.7)" stroke="rgba(200,160,255,0.5)" stroke-width=".7"/>
+        <rect x="31" y="1" width="28" height="28" rx="7" fill="rgba(255,45,110,0.7)" stroke="rgba(255,140,180,0.5)" stroke-width=".7"/>
+        <rect x="62" y="1" width="28" height="28" rx="7" fill="rgba(255,130,20,0.7)" stroke="rgba(255,200,100,0.5)" stroke-width=".7"/>
+        <rect x="93" y="1" width="17" height="28" rx="5" fill="rgba(20,195,110,0.7)" stroke="rgba(90,240,165,0.5)" stroke-width=".7"/>
+        <text x="14"  y="20" text-anchor="middle" font-size="13" font-weight="800" fill="rgba(255,255,255,.96)" font-family="-apple-system,sans-serif">L</text>
+        <text x="45"  y="20" text-anchor="middle" font-size="12" font-weight="800" fill="rgba(255,255,255,.96)" font-family="-apple-system,sans-serif">A</text>
+        <text x="76"  y="20" text-anchor="middle" font-size="12" font-weight="800" fill="rgba(255,255,255,.96)" font-family="-apple-system,sans-serif">P</text>
+        <text x="101" y="20" text-anchor="middle" font-size="9"  font-weight="800" fill="rgba(255,255,255,.96)" font-family="-apple-system,sans-serif">U</text>
+      </svg>
+      <div class="variant-label">Navbar · 30px tall</div>
+    </div>
+    <!-- App icon 2x3 grid -->
+    <div class="variant-box">
+      <div style="background:rgba(255,255,255,0.06);border-radius:18px;padding:10px;">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+          <rect x="2"  y="2"  width="32" height="32" rx="9" fill="rgba(130,70,255,0.72)" stroke="rgba(200,160,255,0.55)" stroke-width=".8"/>
+          <rect x="38" y="2"  width="32" height="32" rx="9" fill="rgba(255,45,110,0.72)" stroke="rgba(255,140,180,0.55)" stroke-width=".8"/>
+          <rect x="2"  y="38" width="32" height="32" rx="9" fill="rgba(20,150,255,0.72)" stroke="rgba(100,205,255,0.55)" stroke-width=".8"/>
+          <rect x="38" y="38" width="32" height="32" rx="9" fill="rgba(255,50,195,0.72)" stroke="rgba(255,140,230,0.55)" stroke-width=".8"/>
+          <text x="18" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="rgba(255,255,255,.97)" font-family="-apple-system,sans-serif">L</text>
+          <text x="54" y="24" text-anchor="middle" font-size="16" font-weight="800" fill="rgba(255,255,255,.97)" font-family="-apple-system,sans-serif">A</text>
+          <text x="18" y="60" text-anchor="middle" font-size="16" font-weight="800" fill="rgba(255,255,255,.97)" font-family="-apple-system,sans-serif">T</text>
+          <text x="54" y="60" text-anchor="middle" font-size="16" font-weight="800" fill="rgba(255,255,255,.97)" font-family="-apple-system,sans-serif">N</text>
+        </svg>
+      </div>
+      <div class="variant-label">App icon · 72px</div>
+    </div>
+    <!-- Favicon sizes -->
+    <div class="variant-box">
+      <div style="display:flex;align-items:flex-end;gap:10px;">
+        <svg width="16" height="16" viewBox="0 0 16 16"><rect x="1" y="1" width="14" height="14" rx="4" fill="rgba(130,70,255,0.85)"/><text x="8" y="12" text-anchor="middle" font-size="9" font-weight="800" fill="white" font-family="-apple-system,sans-serif">L</text></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="6" fill="rgba(130,70,255,0.85)"/><text x="12" y="17" text-anchor="middle" font-size="13" font-weight="800" fill="white" font-family="-apple-system,sans-serif">L</text></svg>
+        <svg width="32" height="32" viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="8" fill="rgba(130,70,255,0.85)" stroke="rgba(200,160,255,0.5)" stroke-width=".8"/><rect x="2" y="2" width="28" height="13" rx="7" fill="rgba(255,255,255,0.2)"/><text x="16" y="22" text-anchor="middle" font-size="17" font-weight="800" fill="white" font-family="-apple-system,sans-serif">L</text></svg>
+      </div>
+      <div class="variant-label">Favicon · 16 / 24 / 32px</div>
+    </div>
+    <!-- Light bg version -->
+    <div class="variant-box" style="background:#f5f5f7;">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+        <rect x="4"  y="4"  width="34" height="34" rx="10" fill="rgba(130,70,255,0.18)" stroke="rgba(130,70,255,0.4)" stroke-width="1"/>
+        <rect x="42" y="4"  width="34" height="34" rx="10" fill="rgba(255,45,110,0.15)" stroke="rgba(255,45,110,0.35)" stroke-width="1"/>
+        <rect x="4"  y="42" width="34" height="34" rx="10" fill="rgba(255,130,20,0.15)" stroke="rgba(255,130,20,0.35)" stroke-width="1"/>
+        <rect x="42" y="42" width="34" height="34" rx="10" fill="rgba(20,150,255,0.15)" stroke="rgba(20,150,255,0.35)" stroke-width="1"/>
+        <text x="21" y="27" text-anchor="middle" font-size="17" font-weight="800" fill="rgba(130,70,255,0.85)"  font-family="-apple-system,sans-serif">L</text>
+        <text x="59" y="27" text-anchor="middle" font-size="16" font-weight="800" fill="rgba(255,45,110,0.85)"  font-family="-apple-system,sans-serif">A</text>
+        <text x="21" y="65" text-anchor="middle" font-size="16" font-weight="800" fill="rgba(255,130,20,0.85)"  font-family="-apple-system,sans-serif">P</text>
+        <text x="59" y="65" text-anchor="middle" font-size="16" font-weight="800" fill="rgba(20,150,255,0.85)"  font-family="-apple-system,sans-serif">T</text>
+      </svg>
+      <div class="variant-label" style="color:#888;">Light bg version</div>
+    </div>
+  </div>
+</div>
+
+<!-- COLOR SYSTEM -->
+<div class="section">
+  <div class="label">Color system</div>
+  <div class="colors">
+    <div class="swatch"><div class="swatch-color" style="background:#0A0A14;border:0.5px solid rgba(255,255,255,0.1);"></div><div class="swatch-name">Void</div><div class="swatch-hex">#0A0A14</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.2);"></div><div class="swatch-name">Glass</div><div class="swatch-hex">frost</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#4D9FFF;"></div><div class="swatch-name">Sky</div><div class="swatch-hex">#4D9FFF</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1AFF8C;"></div><div class="swatch-name">Up</div><div class="swatch-hex">#1AFF8C</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FF4D6A;"></div><div class="swatch-name">Down</div><div class="swatch-hex">#FF4D6A</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#82E05A;"></div><div class="swatch-name">L — purple</div><div class="swatch-hex">#8246FF</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FF2D6E;"></div><div class="swatch-name">A — pink</div><div class="swatch-hex">#FF2D6E</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FF8214;"></div><div class="swatch-name">P — amber</div><div class="swatch-hex">#FF8214</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#14C36E;"></div><div class="swatch-name">U — green</div><div class="swatch-hex">#14C36E</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1496FF;"></div><div class="swatch-name">T — blue</div><div class="swatch-hex">#1496FF</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFD214;"></div><div class="swatch-name">A — yellow</div><div class="swatch-hex">#FFD214</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FF32C3;"></div><div class="swatch-name">N — fuchsia</div><div class="swatch-hex">#FF32C3</div></div>
+  </div>
+</div>
+
+<!-- TYPOGRAPHY -->
+<div class="section">
+  <div class="label">Typography</div>
+  <div class="type-samples">
+    <div class="type-row"><span class="type-meta">Display · 32px / 700</span><span style="font-size:28px;font-weight:700;letter-spacing:-0.5px;">Laputan Info Hub</span></div>
+    <div class="type-row"><span class="type-meta">Heading · 18px / 600</span><span style="font-size:18px;font-weight:600;letter-spacing:-0.3px;color:rgba(255,255,255,0.85);">AI 科技 · Tech Intelligence</span></div>
+    <div class="type-row"><span class="type-meta">Body · 13px / 400</span><span style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;">Multi-agent conversation framework for LLM applications</span></div>
+    <div class="type-row"><span class="type-meta">Ticker · 12px mono</span><span style="font-size:12px;font-family:monospace;letter-spacing:.02em;">S&P 500 <span style="color:#1AFF8C;">5,218 +0.42%</span> &nbsp; Gold <span style="color:#1AFF8C;">2,318 +0.61%</span> &nbsp; HSI <span style="color:#FF4D6A;">18,202 −0.31%</span></span></div>
+    <div class="type-row"><span class="type-meta">Label · 11px caps</span><span style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);">GitHub trending · Agent skills · Finance news</span></div>
+  </div>
+</div>
+
+</body>
+</html>

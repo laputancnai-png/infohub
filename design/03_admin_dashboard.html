@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laputan Info Hub — Admin Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,'SF Pro Text','Helvetica Neue',Arial,sans-serif; background:#111113; color:#f5f5f7; min-height:100vh; }
+  nav { background:#1c1c1e; border-bottom:0.5px solid rgba(255,255,255,0.08); padding:0 28px; height:48px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-left { display:flex; align-items:center; gap:12px; }
+  .nav-brand { font-size:14px; font-weight:500; color:rgba(255,255,255,0.7); }
+  .nav-badge { font-size:10px; padding:2px 8px; border-radius:20px; background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.4); letter-spacing:.05em; }
+  .nav-links { display:flex; gap:20px; }
+  .nav-link { font-size:12px; color:rgba(255,255,255,0.4); cursor:pointer; text-decoration:none; transition:color .15s; }
+  .nav-link.active { color:rgba(255,255,255,0.85); }
+  .nav-link:hover { color:rgba(255,255,255,0.7); }
+  main { max-width:1100px; margin:0 auto; padding:28px; }
+  .page-title { font-size:20px; font-weight:600; color:#f5f5f7; letter-spacing:-0.3px; margin-bottom:6px; }
+  .page-sub { font-size:13px; color:rgba(255,255,255,0.35); margin-bottom:28px; }
+  .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px; }
+  @media(max-width:800px){ .metrics{grid-template-columns:repeat(2,1fr);} }
+  .metric { background:#1c1c1e; border:0.5px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px 18px; }
+  .metric-label { font-size:11px; color:rgba(255,255,255,0.35); margin-bottom:8px; letter-spacing:.02em; }
+  .metric-val { font-size:26px; font-weight:600; color:#f5f5f7; letter-spacing:-0.5px; line-height:1; margin-bottom:6px; }
+  .metric-delta { font-size:11px; font-weight:500; }
+  .delta-up { color:#1aad64; }
+  .delta-dn { color:#e0364f; }
+  .charts { display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-bottom:20px; }
+  @media(max-width:800px){ .charts{grid-template-columns:1fr;} }
+  .chart-card { background:#1c1c1e; border:0.5px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px; }
+  .chart-title { font-size:13px; font-weight:500; color:rgba(255,255,255,0.7); margin-bottom:16px; }
+  .chart-wrap { position:relative; }
+  .bottom-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:800px){ .bottom-row{grid-template-columns:1fr;} }
+  .table-card { background:#1c1c1e; border:0.5px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; }
+  .table-head { display:grid; gap:8px; padding:10px 16px; border-bottom:0.5px solid rgba(255,255,255,0.06); }
+  .table-head-top { grid-template-columns:28px 1fr 64px 64px; }
+  .table-head-donate { grid-template-columns:1fr 80px 80px; }
+  .table-head span { font-size:10px; color:rgba(255,255,255,0.28); font-weight:500; letter-spacing:.06em; text-transform:uppercase; }
+  .table-row { display:grid; gap:8px; padding:10px 16px; border-bottom:0.5px solid rgba(255,255,255,0.04); align-items:center; }
+  .table-row:last-child { border-bottom:none; }
+  .table-row-top { grid-template-columns:28px 1fr 64px 64px; }
+  .table-row-donate { grid-template-columns:1fr 80px 80px; }
+  .row-num { font-size:11px; color:rgba(255,255,255,0.2); font-weight:600; }
+  .row-name { font-size:12px; color:rgba(255,255,255,0.8); font-weight:500; }
+  .row-val { font-size:12px; color:rgba(255,255,255,0.5); }
+  .row-badge { font-size:10px; padding:2px 8px; border-radius:20px; font-weight:500; display:inline-block; }
+  .badge-ai { background:rgba(130,70,255,0.2); color:#b090ff; }
+  .badge-fin { background:rgba(20,150,80,0.2); color:#4dd4a0; }
+  .badge-gh { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.5); }
+  .method-wechat { background:rgba(7,193,96,0.15); color:#1aad64; }
+  .method-alipay { background:rgba(0,160,233,0.15); color:#4daaee; }
+  .method-paypal { background:rgba(0,112,186,0.15); color:#4d9fff; }
+  .donate-amount { font-size:13px; font-weight:600; color:#f5f5f7; }
+  .chart-title-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .chart-legend { display:flex; gap:12px; }
+  .legend-item { display:flex; align-items:center; gap:5px; font-size:10px; color:rgba(255,255,255,0.35); }
+  .legend-dot { width:7px; height:7px; border-radius:50%; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-left">
+    <span class="nav-brand">Laputan Info Hub</span>
+    <span class="nav-badge">Admin</span>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link active" href="#">Overview</a>
+    <a class="nav-link" href="#">Content</a>
+    <a class="nav-link" href="#">Donations</a>
+    <a class="nav-link" href="#" style="margin-left:16px;">← Back to site</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-title">Analytics Overview</div>
+  <div class="page-sub">Last updated: just now · Data from GA4 + Vercel KV</div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Today · Page Views</div>
+      <div class="metric-val">3,241</div>
+      <div class="metric-delta delta-up">↑ 12.4% vs yesterday</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Today · Unique Visitors</div>
+      <div class="metric-val">1,087</div>
+      <div class="metric-delta delta-up">↑ 8.1% vs yesterday</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Avg. Session Duration</div>
+      <div class="metric-val">3:42</div>
+      <div class="metric-delta delta-dn">↓ 0.3 min vs last week</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Donations · This Week</div>
+      <div class="metric-val">7</div>
+      <div class="metric-delta delta-up">↑ 3 vs last week</div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <div class="chart-title-row">
+        <span class="chart-title">Weekly traffic · PV / UV</span>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#4d9fff;"></div>PV</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(77,153,255,0.3);"></div>UV</div>
+        </div>
+      </div>
+      <div class="chart-wrap" style="height:180px;"><canvas id="trafficChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Module clicks · Distribution</div>
+      <div class="chart-wrap" style="height:180px;"><canvas id="donutChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="table-card">
+      <div style="padding:14px 16px 10px;border-bottom:0.5px solid rgba(255,255,255,0.06);">
+        <span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.7);">Top content · Last 7 days</span>
+      </div>
+      <div class="table-head table-head-top">
+        <span>#</span><span>Content</span><span>Clicks</span><span>Module</span>
+      </div>
+      <div class="table-row table-row-top"><span class="row-num">1</span><span class="row-name">microsoft/autogen</span><span class="row-val">284</span><span class="row-badge badge-gh">GitHub</span></div>
+      <div class="table-row table-row-top"><span class="row-num">2</span><span class="row-name">Claude 3.5 Sonnet update</span><span class="row-val">231</span><span class="row-badge badge-ai">AI</span></div>
+      <div class="table-row table-row-top"><span class="row-num">3</span><span class="row-name">Gold XAU hits 2,318</span><span class="row-val">198</span><span class="row-badge badge-fin">Finance</span></div>
+      <div class="table-row table-row-top"><span class="row-num">4</span><span class="row-name">vercel/ai framework</span><span class="row-val">176</span><span class="row-badge badge-gh">GitHub</span></div>
+      <div class="table-row table-row-top"><span class="row-num">5</span><span class="row-name">字节豆包 1.5 Pro 发布</span><span class="row-val">154</span><span class="row-badge badge-ai">AI</span></div>
+      <div class="table-row table-row-top"><span class="row-num">6</span><span class="row-name">Fed rate path signal</span><span class="row-val">142</span><span class="row-badge badge-fin">Finance</span></div>
+    </div>
+    <div class="table-card">
+      <div style="padding:14px 16px 10px;border-bottom:0.5px solid rgba(255,255,255,0.06);">
+        <span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.7);">Donation log</span>
+      </div>
+      <div class="table-head table-head-donate">
+        <span>Note</span><span>Method</span><span>Amount</span>
+      </div>
+      <div class="table-row table-row-donate"><span class="row-val" style="font-size:11px;">Thanks for the great site!</span><span class="row-badge method-wechat">微信</span><span class="donate-amount">¥ 20</span></div>
+      <div class="table-row table-row-donate"><span class="row-val" style="font-size:11px;">Keep it up 👍</span><span class="row-badge method-paypal">PayPal</span><span class="donate-amount">$ 5</span></div>
+      <div class="table-row table-row-donate"><span class="row-val" style="font-size:11px;">—</span><span class="row-badge method-alipay">支付宝</span><span class="donate-amount">¥ 50</span></div>
+      <div class="table-row table-row-donate"><span class="row-val" style="font-size:11px;">非常有用的网站</span><span class="row-badge method-wechat">微信</span><span class="donate-amount">¥ 10</span></div>
+      <div class="table-row table-row-donate"><span class="row-val" style="font-size:11px;">Love the finance section</span><span class="row-badge method-paypal">PayPal</span><span class="donate-amount">$ 10</span></div>
+    </div>
+  </div>
+</main>
+
+<script>
+Chart.defaults.color = 'rgba(255,255,255,0.35)';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+Chart.defaults.font.family = "-apple-system,'SF Pro Text',sans-serif";
+Chart.defaults.font.size = 11;
+
+new Chart(document.getElementById('trafficChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets: [
+      { label:'PV', data:[1820,2340,2100,2890,3241,2750,3100], backgroundColor:'rgba(77,153,255,0.6)', borderRadius:4, borderSkipped:false },
+      { label:'UV', data:[620,810,740,980,1087,940,1040], backgroundColor:'rgba(77,153,255,0.2)', borderRadius:4, borderSkipped:false }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{grid:{color:'rgba(255,255,255,0.04)'}, ticks:{maxTicksLimit:5}} } }
+});
+
+new Chart(document.getElementById('donutChart'), {
+  type: 'doughnut',
+  data: {
+    labels:['GitHub','Finance','AI News','YouTube','Other'],
+    datasets:[{ data:[40,23,16,12,9], backgroundColor:['rgba(130,70,255,0.7)','rgba(20,150,80,0.7)','rgba(255,130,20,0.7)','rgba(255,50,80,0.7)','rgba(255,255,255,0.12)'], borderWidth:0, hoverOffset:4 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, cutout:'68%', plugins:{ legend:{ position:'right', labels:{ boxWidth:8, boxHeight:8, borderRadius:4, padding:10, font:{size:11} } } } }
+});
+</script>
+</body>
+</html>

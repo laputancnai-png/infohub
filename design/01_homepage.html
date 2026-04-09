@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laputan Info Hub — Homepage Design Mockup</title>
+<style>
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.3} }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+  @keyframes shimmer { 0%,100%{opacity:.15} 50%{opacity:.4} }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,'SF Pro Text','Helvetica Neue',Arial,sans-serif; background:#f5f5f7; min-height:100vh; }
+
+  /* NAV */
+  nav { background:rgba(255,255,255,0.72); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:0.5px solid rgba(0,0,0,0.08); padding:0 32px; height:52px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-orb-wrap { position:relative; width:30px; height:30px; }
+  .nav-orb-wrap svg { width:30px; height:30px; }
+  .nav-brand { font-size:16px; font-weight:600; color:#1d1d1f; letter-spacing:-0.3px; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-link { font-size:13px; color:#555; padding:6px 14px; border-radius:20px; cursor:pointer; text-decoration:none; transition:background .15s; }
+  .nav-link.active { background:#1d1d1f; color:#fff; }
+  .nav-link:hover:not(.active) { background:rgba(0,0,0,0.06); }
+  .lang-btn { font-size:12px; color:#888; padding:5px 12px; border:0.5px solid #d0d0d5; border-radius:20px; cursor:pointer; background:transparent; }
+
+  /* TICKER */
+  .ticker-wrap { background:#0a0a14; overflow:hidden; height:34px; display:flex; align-items:center; }
+  .live-dot { width:5px; height:5px; border-radius:50%; background:#1aff8c; animation:pulse-dot 1.5s ease-in-out infinite; flex-shrink:0; margin:0 14px; }
+  .ticker-inner { display:flex; white-space:nowrap; animation:ticker 50s linear infinite; }
+  .tick-item { display:inline-flex; align-items:center; gap:6px; padding:0 24px; font-size:12px; font-family:'SF Mono',Menlo,'Courier New',monospace; }
+  .tick-name { color:rgba(255,255,255,0.4); }
+  .tick-val { color:rgba(255,255,255,0.85); font-weight:500; }
+  .tick-up { color:#1aff8c; }
+  .tick-dn { color:#ff4d6a; }
+  .tick-sep { color:rgba(255,255,255,0.1); padding:0 4px; }
+
+  /* MAIN */
+  main { max-width:1200px; margin:0 auto; padding:28px 32px 80px; }
+  .tabs { display:flex; gap:6px; margin-bottom:24px; flex-wrap:wrap; }
+  .tab { font-size:13px; padding:7px 16px; border-radius:20px; border:0.5px solid #d0d0d5; color:#555; background:#fff; cursor:pointer; transition:all .15s; }
+  .tab.active { background:#1d1d1f; color:#fff; border-color:#1d1d1f; }
+  .sec-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px; }
+  .sec-title { font-size:18px; font-weight:600; color:#1d1d1f; letter-spacing:-0.3px; }
+  .sec-meta { font-size:12px; color:#aaa; }
+
+  /* GLASS CARDS */
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  @media(max-width:900px){ .grid3{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:600px){ .grid3,.grid2{grid-template-columns:1fr;} }
+
+  .glass-card { background:rgba(255,255,255,0.7); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:0.5px solid rgba(255,255,255,0.85); border-radius:14px; padding:18px; cursor:pointer; transition:all .2s; position:relative; overflow:hidden; }
+  .glass-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.9),transparent); }
+  .glass-card:hover { background:rgba(255,255,255,0.9); transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,0.08); }
+  .card-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:10px; }
+  .lang-badge { font-size:10px; font-weight:500; padding:3px 9px; border-radius:20px; }
+  .py  { background:#e8f0ff; color:#1a3880; }
+  .ts  { background:#e1f5ee; color:#085041; }
+  .rs  { background:#fff0e8; color:#7a2e10; }
+  .go  { background:#e8f8ff; color:#004d70; }
+  .stars { font-size:11px; color:#999; display:flex; align-items:center; gap:3px; }
+  .star { color:#f0a500; }
+  .card-name { font-size:13px; font-weight:600; color:#1d1d1f; margin-bottom:6px; letter-spacing:-0.2px; }
+  .card-desc { font-size:12px; color:#666; line-height:1.45; }
+  .rank { font-size:22px; font-weight:700; color:rgba(0,0,0,0.06); position:absolute; bottom:12px; right:14px; letter-spacing:-1px; }
+  .see-all { background:rgba(0,0,0,0.025); border:0.5px solid rgba(0,0,0,0.07); border-radius:14px; padding:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; min-height:100px; font-size:13px; color:#aaa; transition:all .2s; }
+  .see-all:hover { background:rgba(0,0,0,0.05); color:#888; }
+
+  /* NEWS CARDS */
+  .news-card { background:rgba(255,255,255,0.7); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:0.5px solid rgba(255,255,255,0.85); border-radius:14px; padding:18px; cursor:pointer; transition:all .2s; position:relative; overflow:hidden; }
+  .news-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.9),transparent); }
+  .news-card:hover { background:rgba(255,255,255,0.9); transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,0.08); }
+  .news-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .src-badge { font-size:10px; font-weight:500; padding:3px 9px; border-radius:20px; }
+  .src-x { background:#1d1d1f; color:#fff; }
+  .src-hn { background:#ff6600; color:#fff; }
+  .src-yt { background:#ff0000; color:#fff; }
+  .src-36kr { background:#e60026; color:#fff; }
+  .src-bloom { background:#1a3880; color:#fff; }
+  .src-sspai { background:#d53a31; color:#fff; }
+  .news-time { font-size:10px; color:#bbb; }
+  .news-title { font-size:13px; font-weight:500; color:#1d1d1f; line-height:1.45; margin-bottom:6px; }
+  .news-desc { font-size:11px; color:#888; line-height:1.4; }
+
+  .divider { height:0.5px; background:rgba(0,0,0,0.07); margin:28px 0; }
+
+  /* FAB */
+  .fab { position:fixed; bottom:28px; right:28px; display:flex; align-items:center; gap:8px; background:#1d1d1f; color:#fff; font-size:14px; font-weight:500; padding:13px 22px; border-radius:50px; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,0.2); z-index:200; transition:all .2s; border:none; }
+  .fab:hover { transform:scale(1.04); box-shadow:0 8px 28px rgba(0,0,0,0.28); }
+
+  /* FOOTER */
+  footer { background:rgba(255,255,255,0.6); backdrop-filter:blur(12px); border-top:0.5px solid rgba(0,0,0,0.08); padding:24px 32px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+  .footer-info { font-size:12px; color:#999; line-height:1.7; }
+  .footer-info a { color:#4d9fff; text-decoration:none; }
+  .donate-strip { display:flex; align-items:center; gap:8px; }
+  .donate-label { font-size:11px; color:#aaa; margin-right:4px; }
+  .donate-btn { font-size:12px; font-weight:500; padding:7px 16px; border-radius:20px; border:0.5px solid #d0d0d5; color:#555; background:rgba(255,255,255,0.8); cursor:pointer; transition:all .15s; }
+  .donate-btn:hover { background:#1d1d1f; color:#fff; border-color:#1d1d1f; }
+
+  /* DARK MODE */
+  @media(prefers-color-scheme:dark){
+    body { background:#1c1c1e; }
+    nav { background:rgba(28,28,30,0.72); border-color:rgba(255,255,255,0.08); }
+    .nav-brand { color:#f5f5f7; }
+    .nav-link { color:#aaa; }
+    .nav-link.active { background:#f5f5f7; color:#1d1d1f; }
+    .tab { background:#2c2c2e; border-color:#3a3a3c; color:#aaa; }
+    .tab.active { background:#f5f5f7; color:#1d1d1f; border-color:#f5f5f7; }
+    .glass-card,.news-card { background:rgba(44,44,46,0.7); border-color:rgba(255,255,255,0.08); }
+    .glass-card:hover,.news-card:hover { background:rgba(58,58,60,0.9); }
+    .sec-title,.card-name,.news-title { color:#f5f5f7; }
+    .card-desc,.news-desc { color:#aaa; }
+    .divider { background:rgba(255,255,255,0.08); }
+    footer { background:rgba(28,28,30,0.6); border-color:rgba(255,255,255,0.08); }
+    .donate-btn { background:rgba(44,44,46,0.8); border-color:#3a3a3c; color:#aaa; }
+    .donate-btn:hover { background:#f5f5f7; color:#1d1d1f; }
+    .see-all { background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.08); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-orb-wrap">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="9" height="9" rx="2.5" fill="rgba(130,70,255,0.75)" stroke="rgba(200,160,255,0.6)" stroke-width=".6"/>
+        <rect x="10" y="0" width="9" height="9" rx="2.5" fill="rgba(255,50,110,0.75)" stroke="rgba(255,140,180,0.6)" stroke-width=".6"/>
+        <rect x="20" y="0" width="10" height="9" rx="2.5" fill="rgba(255,130,20,0.75)" stroke="rgba(255,200,100,0.6)" stroke-width=".6"/>
+        <rect x="0" y="10" width="9" height="9" rx="2.5" fill="rgba(20,195,110,0.75)" stroke="rgba(90,240,165,0.6)" stroke-width=".6"/>
+        <rect x="10" y="10" width="9" height="9" rx="2.5" fill="rgba(20,150,255,0.75)" stroke="rgba(100,205,255,0.6)" stroke-width=".6"/>
+        <rect x="20" y="10" width="10" height="9" rx="2.5" fill="rgba(255,210,20,0.75)" stroke="rgba(255,238,110,0.6)" stroke-width=".6"/>
+        <rect x="0" y="20" width="9" height="10" rx="2.5" fill="rgba(255,50,195,0.75)" stroke="rgba(255,140,230,0.6)" stroke-width=".6"/>
+        <text x="3"  y="8"  font-size="6.5" font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">L</text>
+        <text x="13" y="8"  font-size="6"   font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">A</text>
+        <text x="23" y="8"  font-size="6"   font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">P</text>
+        <text x="3"  y="18" font-size="6"   font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">U</text>
+        <text x="13" y="18" font-size="6"   font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">T</text>
+        <text x="23" y="18" font-size="6"   font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">A</text>
+        <text x="3"  y="29" font-size="6"   font-weight="800" fill="rgba(255,255,255,.95)" font-family="-apple-system,sans-serif">N</text>
+      </svg>
+    </div>
+    <span class="nav-brand">Laputan Info Hub</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link active" href="#">AI Tech</a>
+    <a class="nav-link" href="02_finance.html">Finance</a>
+  </div>
+  <button class="lang-btn">EN | 中</button>
+</nav>
+
+<div class="ticker-wrap">
+  <div class="live-dot"></div>
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<main>
+  <div class="tabs">
+    <div class="tab active">GitHub 热门 / Trending</div>
+    <div class="tab">Agent Skills</div>
+    <div class="tab">AI 资讯 · X / HN</div>
+    <div class="tab">视频 · YouTube</div>
+    <div class="tab">中文 · 36kr / 少数派</div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-title">GitHub 最热项目 · Top Stars</span>
+    <span class="sec-meta">更新于 2小时前 · Updated 2h ago</span>
+  </div>
+  <div class="grid3">
+    <div class="glass-card"><div class="card-top"><span class="lang-badge py">Python</span><span class="stars"><span class="star">★</span> 142.3k</span></div><div class="card-name">microsoft / autogen</div><div class="card-desc">Multi-agent conversation framework for building LLM applications at scale</div><div class="rank">01</div></div>
+    <div class="glass-card"><div class="card-top"><span class="lang-badge ts">TypeScript</span><span class="stars"><span class="star">★</span> 98.1k</span></div><div class="card-name">langchain-ai / langchain</div><div class="card-desc">Build context-aware reasoning applications powered by LLMs</div><div class="rank">02</div></div>
+    <div class="glass-card"><div class="card-top"><span class="lang-badge py">Python</span><span class="stars"><span class="star">★</span> 87.4k</span></div><div class="card-name">openai / openai-python</div><div class="card-desc">The official Python library for the OpenAI API</div><div class="rank">03</div></div>
+    <div class="glass-card"><div class="card-top"><span class="lang-badge ts">TypeScript</span><span class="stars"><span class="star">★</span> 76.2k</span></div><div class="card-name">vercel / ai</div><div class="card-desc">Build AI-powered streaming text and chat UIs with React, Svelte, Vue</div><div class="rank">04</div></div>
+    <div class="glass-card"><div class="card-top"><span class="lang-badge rs">Rust</span><span class="stars"><span class="star">★</span> 64.8k</span></div><div class="card-name">tauri-apps / tauri</div><div class="card-desc">Build smaller, faster, and more secure desktop and mobile applications</div><div class="rank">05</div></div>
+    <div class="see-all">查看全部 20 个项目 →</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="sec-header">
+    <span class="sec-title">AI 资讯 · Latest News</span>
+    <span class="sec-meta">X · Hacker News · 36kr · 少数派</span>
+  </div>
+  <div class="grid2">
+    <div class="news-card"><div class="news-top"><span class="src-badge src-x">X / Twitter</span><span class="news-time">18 min ago</span></div><div class="news-title">Anthropic releases Claude 3.5 Sonnet with new computer use capabilities</div><div class="news-desc">New model can control computers, write and execute code autonomously across platforms</div></div>
+    <div class="news-card"><div class="news-top"><span class="src-badge src-hn">Hacker News</span><span class="news-time">1h ago</span></div><div class="news-title">Show HN: I built a local-first AI assistant that runs entirely offline</div><div class="news-desc">432 points · 187 comments · Using Ollama + llama3.2 with RAG on local files</div></div>
+    <div class="news-card"><div class="news-top"><span class="src-badge src-36kr">36kr</span><span class="news-time">2h ago</span></div><div class="news-title">字节跳动发布豆包 1.5 Pro，多模态能力对标 GPT-4o</div><div class="news-desc">在代码生成、数学推理方面取得显著提升，价格较前代下降 60%</div></div>
+    <div class="news-card"><div class="news-top"><span class="src-badge src-yt">YouTube</span><span class="news-time">3h ago</span></div><div class="news-title">Building a production-ready RAG system in 2025 — complete guide</div><div class="news-desc">847K views · 42 min · Covers chunking, embeddings, reranking, and evaluation</div></div>
+  </div>
+</main>
+
+<button class="fab">
+  <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 3C10 3 6 7.5 6 11a4 4 0 008 0c0-3.5-4-8-4-8z" fill="currentColor" opacity=".4"/><path d="M10 3C10 3 6 7.5 6 11a4 4 0 008 0c0-3.5-4-8-4-8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M10 15v2M8 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  Buy me a coffee
+</button>
+
+<footer>
+  <div class="footer-info">
+    <div style="font-weight:500;color:#555;margin-bottom:2px;">Laputan Info Hub · news.36techsolutions.com</div>
+    <div>Developed by Laputan YAO &nbsp;·&nbsp; <a href="https://github.com/laputancnai-png">GitHub</a> &nbsp;·&nbsp; laputancnai@gmail.com</div>
+  </div>
+  <div class="donate-strip">
+    <span class="donate-label">支持作者 / Support</span>
+    <button class="donate-btn">微信</button>
+    <button class="donate-btn">支付宝</button>
+    <button class="donate-btn">PayPal</button>
+  </div>
+</footer>
+
+<script>
+const ticks = [
+  {n:'S&P 500',v:'5,218.20',d:'+0.42%',up:true},
+  {n:'NASDAQ',v:'16,384.47',d:'−0.18%',up:false},
+  {n:'Dow Jones',v:'38,904.18',d:'+0.27%',up:true},
+  {n:'恒生 HSI',v:'18,202.31',d:'+1.03%',up:true},
+  {n:'上证 SSE',v:'3,241.82',d:'+0.27%',up:true},
+  {n:'深证 SZI',v:'10,124.56',d:'−0.14%',up:false},
+  {n:'Gold XAU',v:'2,318.40',d:'+0.61%',up:true},
+  {n:'Silver XAG',v:'27.84',d:'+0.43%',up:true},
+  {n:'WTI Oil',v:'82.41',d:'−0.33%',up:false},
+  {n:'USD Index',v:'104.22',d:'−0.09%',up:false},
+];
+const ticker = document.getElementById('ticker');
+const html = ticks.map(t=>`<span class="tick-item"><span class="tick-name">${t.n}</span><span class="tick-val">${t.v}</span><span class="${t.up?'tick-up':'tick-dn'}">${t.d}</span></span><span class="tick-sep">·</span>`).join('');
+ticker.innerHTML = html + html;
+</script>
+</body>
+</html>
