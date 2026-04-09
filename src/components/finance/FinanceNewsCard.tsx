@@ -15,16 +15,23 @@ function timeAgo(iso: string): string {
 
 export function FinanceNewsCard({ item }: FinanceNewsCardProps) {
   return (
-    <a href={item.url} target="_blank" rel="noopener noreferrer" className="no-underline">
-      <GlassCard hover className="p-[18px]">
-        <div className="flex items-center justify-between mb-2.5">
-          <Badge variant={item.source}>{LABELS[item.source]}</Badge>
+    <a href={item.url} target="_blank" rel="noopener noreferrer" className="no-underline group">
+      <GlassCard hover className="p-5 flex flex-col gap-2.5 h-full">
+        <div className="flex items-center justify-between">
+          <Badge variant={item.source}>{LABELS[item.source] ?? item.source}</Badge>
           <span className="text-[10px] text-[#bbb]">{timeAgo(item.publishedAt)}</span>
         </div>
-        <div className="text-[13px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7] leading-snug mb-1.5">{item.title}</div>
+        <div className="text-[14px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] leading-snug group-hover:text-[#4d9fff] transition-colors">
+          {item.title}
+        </div>
         {item.description && (
-          <div className="text-[11px] text-[#888] dark:text-[#666] leading-snug line-clamp-2">{item.description}</div>
+          <div className="text-[12px] text-[#666] dark:text-[#888] leading-relaxed">
+            {item.description}
+          </div>
         )}
+        <div className="text-[11px] text-[#4d9fff] mt-auto pt-1">
+          Read on {LABELS[item.source] ?? item.source} →
+        </div>
       </GlassCard>
     </a>
   );
