@@ -5,21 +5,22 @@ import { Footer } from '@/components/layout/Footer';
 import { Ticker } from '@/components/layout/Ticker';
 import { TabBar } from '@/components/home/TabBar';
 import { FABWithModal } from '@/components/home/FABWithModal';
+import { kvGet, MOCK_GITHUB, MOCK_NEWS } from '@/lib/kv';
 import type { GithubRepo, NewsItem, AgentSkill } from '@/lib/types';
 
 async function getData() {
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
-  const [reposRes, newsRes, skillsRes] = await Promise.all([
-    fetch(`${base}/api/github`, { next: { revalidate: 300 } }),
-    fetch(`${base}/api/news`,   { next: { revalidate: 300 } }),
-    fetch(`${base}/api/skills`, { next: { revalidate: 300 } }),
+  const [repos, news, skillhub, clawhub] = await Promise.all([
+    kvGet<GithubRepo[]>('github:trending'),
+    kvGet<NewsItem[]>('news:hn'),
+    kvGet<AgentSkill[]>('skills:skillhub'),
+    kvGet<AgentSkill[]>('skills:clawhub'),
   ]);
-  const repos: GithubRepo[] = reposRes.ok ? await reposRes.json() : [];
-  const news:  NewsItem[]   = newsRes.ok  ? await newsRes.json()  : [];
-  const skillsData = skillsRes.ok ? await skillsRes.json() : { skillhub: [], clawhub: [] };
-  const skillhubSkills: AgentSkill[] = skillsData.skillhub ?? [];
-  const clawhubSkills:  AgentSkill[] = skillsData.clawhub  ?? [];
-  return { repos, news, skillhubSkills, clawhubSkills };
+  return {
+    repos:         repos        ?? MOCK_GITHUB,
+    news:          news         ?? MOCK_NEWS,
+    skillhubSkills: skillhub   ?? [],
+    clawhubSkills:  clawhub    ?? [],
+  };
 }
 
 export default async function HomePage() {
