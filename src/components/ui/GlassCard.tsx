@@ -9,7 +9,7 @@ export function GlassCard({ hover = false, className = '', children, ...props }:
     'relative overflow-hidden rounded-[14px]',
     'bg-white/70 dark:bg-white/[0.07]',
     'backdrop-blur-card',
-    'border border-hairline border-white/85 dark:border-white/[0.08]',
+    'border border-hairline border-black/[0.09] dark:border-white/[0.08]',
     'before:absolute before:inset-x-0 before:top-0 before:h-px',
     'before:bg-gradient-to-r before:from-transparent before:via-white/90 before:to-transparent',
   ].join(' ');

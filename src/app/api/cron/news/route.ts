@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fetchHackerNews } from '@/lib/scrapers/hn';
-import { fetchRssFeeds } from '@/lib/scrapers/rss';
 import { kvSet } from '@/lib/kv';
 
 function isCronAuthorized(req: NextRequest): boolean {
@@ -15,19 +14,9 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   try {
-    const [hnItems, rssItems] = await Promise.all([
-      fetchHackerNews(10),
-      fetchRssFeeds(6),
-    ]);
-    const hn36kr = rssItems.filter(i => i.source === '36kr');
-    const sspai  = rssItems.filter(i => i.source === 'sspai');
-
-    await Promise.all([
-      kvSet('news:hn',        hnItems,  45 * 60),
-      kvSet('news:rss:36kr',  hn36kr,   45 * 60),
-      kvSet('news:rss:sspai', sspai,    45 * 60),
-    ]);
-    return NextResponse.json({ ok: true, hn: hnItems.length, '36kr': hn36kr.length, sspai: sspai.length });
+    const hnItems = await fetchHackerNews(10);
+    await kvSet('news:hn', hnItems, 45 * 60);
+    return NextResponse.json({ ok: true, hn: hnItems.length });
   } catch (err) {
     console.error('[cron/news]', err);
     return NextResponse.json({ error: String(err) }, { status: 500 });

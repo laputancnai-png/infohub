@@ -4,7 +4,7 @@ import type { GithubRepo, NewsItem } from '@/lib/types';
 import { GitHubCard } from './GitHubCard';
 import { NewsCard } from './NewsCard';
 
-type Tab = 'github' | 'hn' | '36kr' | 'sspai';
+type Tab = 'github' | 'hn';
 
 interface TabBarProps {
   repos: GithubRepo[];
@@ -14,8 +14,6 @@ interface TabBarProps {
 const TABS: { id: Tab; label: string }[] = [
   { id: 'github', label: 'GitHub 热门 / Trending' },
   { id: 'hn',     label: 'Hacker News' },
-  { id: '36kr',   label: '36kr' },
-  { id: 'sspai',  label: '少数派' },
 ];
 
 export function TabBar({ repos, news }: TabBarProps) {
