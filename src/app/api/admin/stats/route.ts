@@ -13,16 +13,16 @@ export async function GET() {
   const today = new Date().toISOString().split('T')[0];
 
   const totalPvs = await Promise.all(PAGES.map(p => kvGet<number>(`admin:pv:${p}`)));
-  const totalPv = totalPvs.reduce((s, v) => s + (v ?? 0), 0);
+  const totalPv = totalPvs.reduce((s: number, v) => s + (v ?? 0), 0);
 
   const todayPvs = await Promise.all(PAGES.map(p => kvGet<number>(`admin:pv:daily:${today}:${p}`)));
-  const todayPv = todayPvs.reduce((s, v) => s + (v ?? 0), 0);
+  const todayPv = todayPvs.reduce((s: number, v) => s + (v ?? 0), 0);
 
   const daily: AdminStats['daily'] = [];
   for (let i = 6; i >= 0; i--) {
     const d = new Date(Date.now() - i * 86400000).toISOString().split('T')[0];
     const pvs = await Promise.all(PAGES.map(p => kvGet<number>(`admin:pv:daily:${d}:${p}`)));
-    daily.push({ date: d, pv: pvs.reduce((s, v) => s + (v ?? 0), 0) });
+    daily.push({ date: d, pv: pvs.reduce((s: number, v) => s + (v ?? 0), 0) });
   }
 
   const topPages = PAGES.map((p, i) => ({ page: p, pv: totalPvs[i] ?? 0 }))

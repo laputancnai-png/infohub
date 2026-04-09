@@ -40,6 +40,7 @@ export function DonateModal({ open, onClose }: DonateModalProps) {
       onClick={onClose}
     >
       <div
+        data-testid="donate-modal"
         className="relative w-80 rounded-[22px] bg-white/84 dark:bg-[#2c2c2e]/90 backdrop-blur-[32px] border border-hairline border-white/92 dark:border-white/[0.08] p-8 shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
