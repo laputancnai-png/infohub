@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { kvGet, MOCK_NEWS } from '@/lib/kv';
 import type { NewsItem } from '@/lib/types';
 
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const [hn, kr, sspai] = await Promise.all([
