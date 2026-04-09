@@ -19,26 +19,58 @@ const SYMBOLS: SymbolConfig[] = [
   { symbol: 'DX-Y.NYB', name: 'USD Index', nameZh: '美元指数', group: 'fx' },
 ];
 
-const HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-  'Accept': 'application/json, text/plain, */*',
-  'Accept-Language': 'en-US,en;q=0.9',
-  'Origin': 'https://finance.yahoo.com',
-  'Referer': 'https://finance.yahoo.com/',
-};
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
+
+// Cache crumb + cookie for the process lifetime (refreshed on 401)
+let _crumb: string | null = null;
+let _cookie: string | null = null;
+
+async function fetchCrumb(): Promise<{ crumb: string; cookie: string }> {
+  // Step 1: get cookie by visiting consent page
+  const consentRes = await fetch('https://finance.yahoo.com/quote/%5EGSPC/', {
+    headers: { 'User-Agent': UA, 'Accept': 'text/html' },
+    redirect: 'follow',
+  });
+  const cookieHeader = consentRes.headers.get('set-cookie') ?? '';
+  const cookie = cookieHeader.split(',').map(c => c.split(';')[0]).join('; ');
+
+  // Step 2: get crumb
+  const crumbRes = await fetch('https://query1.finance.yahoo.com/v1/test/getcrumb', {
+    headers: { 'User-Agent': UA, 'Cookie': cookie },
+  });
+  const crumb = await crumbRes.text();
+  if (!crumb || crumb.includes('<')) throw new Error('Failed to get Yahoo crumb');
+  return { crumb: crumb.trim(), cookie };
+}
 
 export async function fetchYahooQuotes(): Promise<Quote[]> {
+  // Fetch crumb if not cached
+  if (!_crumb || !_cookie) {
+    const result = await fetchCrumb();
+    _crumb = result.crumb;
+    _cookie = result.cookie;
+  }
+
   const symbolStr = SYMBOLS.map(s => encodeURIComponent(s.symbol)).join('%2C');
+  const url = `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&crumb=${encodeURIComponent(_crumb)}&fields=regularMarketPrice,regularMarketChangePercent&formatted=false`;
 
-  // Try v8 API first (cookie-free)
-  const url = `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&fields=regularMarketPrice,regularMarketChangePercent,shortName&formatted=false`;
+  let res = await fetch(url, {
+    headers: { 'User-Agent': UA, 'Cookie': _cookie, 'Accept': 'application/json' },
+    next: { revalidate: 0 },
+  });
 
-  let res = await fetch(url, { headers: HEADERS, next: { revalidate: 0 } });
-
-  // Fallback to v7 if v8 fails
-  if (!res.ok) {
-    const urlV7 = `https://query2.finance.yahoo.com/v7/finance/quote?symbols=${symbolStr}&fields=regularMarketPrice,regularMarketChangePercent,shortName`;
-    res = await fetch(urlV7, { headers: HEADERS, next: { revalidate: 0 } });
+  // If 401, refresh crumb and retry once
+  if (res.status === 401) {
+    _crumb = null;
+    _cookie = null;
+    const result = await fetchCrumb();
+    _crumb = result.crumb;
+    _cookie = result.cookie;
+    const retryUrl = `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&crumb=${encodeURIComponent(_crumb)}&fields=regularMarketPrice,regularMarketChangePercent&formatted=false`;
+    res = await fetch(retryUrl, {
+      headers: { 'User-Agent': UA, 'Cookie': _cookie, 'Accept': 'application/json' },
+      next: { revalidate: 0 },
+    });
   }
 
   if (!res.ok) throw new Error(`Yahoo Finance fetch failed: ${res.status}`);
