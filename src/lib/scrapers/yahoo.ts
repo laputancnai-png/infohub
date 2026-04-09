@@ -19,45 +19,48 @@ const SYMBOLS: SymbolConfig[] = [
   { symbol: 'DX-Y.NYB', name: 'USD Index', nameZh: '美元指数', group: 'fx' },
 ];
 
-export async function fetchYahooQuotes(): Promise<Quote[]> {
-  const symbolStr = SYMBOLS.map(s => s.symbol).join(',');
-  const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(symbolStr)}&fields=regularMarketPrice,regularMarketChangePercent,shortName`;
+const HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  'Accept': 'application/json, text/plain, */*',
+  'Accept-Language': 'en-US,en;q=0.9',
+  'Origin': 'https://finance.yahoo.com',
+  'Referer': 'https://finance.yahoo.com/',
+};
 
-  const res = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; InfoHub/1.0)',
-      'Accept': 'application/json',
-    },
-    next: { revalidate: 0 },
-  });
+export async function fetchYahooQuotes(): Promise<Quote[]> {
+  const symbolStr = SYMBOLS.map(s => encodeURIComponent(s.symbol)).join('%2C');
+
+  // Try v8 API first (cookie-free)
+  const url = `https://query1.finance.yahoo.com/v8/finance/quote?symbols=${symbolStr}&fields=regularMarketPrice,regularMarketChangePercent,shortName&formatted=false`;
+
+  let res = await fetch(url, { headers: HEADERS, next: { revalidate: 0 } });
+
+  // Fallback to v7 if v8 fails
+  if (!res.ok) {
+    const urlV7 = `https://query2.finance.yahoo.com/v7/finance/quote?symbols=${symbolStr}&fields=regularMarketPrice,regularMarketChangePercent,shortName`;
+    res = await fetch(urlV7, { headers: HEADERS, next: { revalidate: 0 } });
+  }
+
   if (!res.ok) throw new Error(`Yahoo Finance fetch failed: ${res.status}`);
 
   const data = (await res.json()) as Record<string, unknown>;
-  const results: Record<string, unknown>[] = (data.quoteResponse as Record<string, unknown>)?.result as Record<string, unknown>[] ?? [];
+  const results: Record<string, unknown>[] =
+    ((data.quoteResponse as Record<string, unknown>)?.result as Record<string, unknown>[]) ?? [];
 
   return SYMBOLS.map(cfg => {
     const r = results.find((q: Record<string, unknown>) => q.symbol === cfg.symbol);
     if (!r) {
-      return {
-        symbol: cfg.symbol,
-        name: cfg.name,
-        nameZh: cfg.nameZh,
-        value: '—',
-        change: '—',
-        up: true,
-        group: cfg.group,
-      };
+      return { symbol: cfg.symbol, name: cfg.name, nameZh: cfg.nameZh, value: '—', change: '—', up: true, group: cfg.group };
     }
     const price = (r.regularMarketPrice as number) ?? 0;
     const changePct = (r.regularMarketChangePercent as number) ?? 0;
     const up = changePct >= 0;
-    const sign = up ? '+' : '';
     return {
       symbol: cfg.symbol,
       name: cfg.name,
       nameZh: cfg.nameZh,
       value: formatPrice(price),
-      change: `${sign}${changePct.toFixed(2)}%`,
+      change: `${up ? '+' : ''}${changePct.toFixed(2)}%`,
       up,
       group: cfg.group,
     };
