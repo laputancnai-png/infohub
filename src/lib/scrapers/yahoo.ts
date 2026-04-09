@@ -26,13 +26,21 @@ let _crumb: string | null = null;
 let _cookie: string | null = null;
 
 async function fetchCrumb(): Promise<{ crumb: string; cookie: string }> {
-  // Step 1: get cookie by visiting consent page
+  // Step 1: get essential cookies (only A1, A3, A1S, cmp, euconsent)
   const consentRes = await fetch('https://finance.yahoo.com/quote/%5EGSPC/', {
     headers: { 'User-Agent': UA, 'Accept': 'text/html' },
     redirect: 'follow',
   });
-  const cookieHeader = consentRes.headers.get('set-cookie') ?? '';
-  const cookie = cookieHeader.split(',').map(c => c.split(';')[0]).join('; ');
+
+  // Extract only key=value from each Set-Cookie, limit to first 5 cookies to avoid overflow
+  const rawCookies: string[] = [];
+  consentRes.headers.forEach((value, name) => {
+    if (name.toLowerCase() === 'set-cookie') {
+      const kv = value.split(';')[0].trim();
+      if (kv) rawCookies.push(kv);
+    }
+  });
+  const cookie = rawCookies.slice(0, 5).join('; ');
 
   // Step 2: get crumb
   const crumbRes = await fetch('https://query1.finance.yahoo.com/v1/test/getcrumb', {
