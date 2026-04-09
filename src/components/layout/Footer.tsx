@@ -10,7 +10,7 @@ export function Footer() {
     <>
       <footer className="bg-white/60 dark:bg-[#1c1c1e]/60 backdrop-blur-card border-t border-hairline border-black/[0.08] dark:border-white/[0.08] px-8 py-6 flex items-center justify-between flex-wrap gap-3.5">
         <div className="text-[12px] text-[#999] leading-relaxed">
-          <div className="font-medium text-[#555] dark:text-[#aaa] mb-0.5">Laputan Info Hub · news.36techsolutions.com</div>
+          <div className="font-medium text-[#555] dark:text-[#aaa] mb-0.5">Laputan Info Hub · infohub.36techsolutions.com</div>
           <div>
             Developed by Laputan YAO &nbsp;·&nbsp;
             <a href="https://github.com/laputancnai-png" className="text-[#4d9fff] no-underline">GitHub</a>
