@@ -4,9 +4,10 @@ interface BadgeProps {
 }
 
 const VARIANTS: Record<string, string> = {
-  hn:     'bg-[#ff6600] text-white',
-  '36kr': 'bg-[#e60026] text-white',
-  sspai:  'bg-[#d53a31] text-white',
+  hn:          'bg-[#ff6600] text-white',
+  marketwatch: 'bg-[#0057a8] text-white',
+  ft:          'bg-[#fff1e5] text-[#990f3d] dark:bg-[#990f3d]/30 dark:text-[#ffb3c6]',
+  cnbc:        'bg-[#003566] text-white',
   Python:     'bg-[#e8f0ff] text-[#1a3880] dark:bg-[#1a3880]/30 dark:text-[#7eb0ff]',
   TypeScript: 'bg-[#e1f5ee] text-[#085041] dark:bg-[#085041]/30 dark:text-[#4dd4a0]',
   Rust:       'bg-[#fff0e8] text-[#7a2e10] dark:bg-[#7a2e10]/30 dark:text-[#ffb07a]',

@@ -12,7 +12,7 @@ export interface GithubRepo {
 
 export interface NewsItem {
   id: string;
-  source: 'hn' | '36kr' | 'sspai';
+  source: 'hn' | 'marketwatch' | 'ft' | 'cnbc';
   title: string;
   description?: string;
   url: string;

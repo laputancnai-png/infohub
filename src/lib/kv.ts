@@ -72,8 +72,8 @@ export const MOCK_GITHUB: GithubRepo[] = [
 export const MOCK_NEWS: NewsItem[] = [
   { id: '1', source: 'hn', title: 'Show HN: I built a local-first AI assistant that runs entirely offline', description: '432 points · 187 comments', url: 'https://news.ycombinator.com/item?id=1', publishedAt: new Date(Date.now() - 3600000).toISOString(), extra: '432 points · 187 comments' },
   { id: '2', source: 'hn', title: 'Anthropic releases Claude with new computer use capabilities', description: '318 points · 143 comments', url: 'https://news.ycombinator.com/item?id=2', publishedAt: new Date(Date.now() - 7200000).toISOString(), extra: '318 points · 143 comments' },
-  { id: '3', source: '36kr', title: '字节跳动发布豆包 1.5 Pro，多模态能力对标 GPT-4o', description: '在代码生成、数学推理方面取得显著提升，价格较前代下降 60%', url: 'https://36kr.com', publishedAt: new Date(Date.now() - 10800000).toISOString() },
-  { id: '4', source: 'sspai', title: '用 AI 重新定义工作流：2025 年最值得关注的效率工具', description: '少数派编辑部精选了 12 款改变工作方式的工具', url: 'https://sspai.com', publishedAt: new Date(Date.now() - 14400000).toISOString() },
+  { id: '3', source: 'marketwatch', title: 'S&P 500 rises as markets stabilize after rate decision', url: 'https://www.marketwatch.com', publishedAt: new Date(Date.now() - 10800000).toISOString() },
+  { id: '4', source: 'ft', title: 'Fed signals pause in rate hikes amid inflation concerns', url: 'https://www.ft.com', publishedAt: new Date(Date.now() - 14400000).toISOString() },
 ];
 
 export const MOCK_QUOTES: Quote[] = [

@@ -4,7 +4,7 @@ import type { NewsItem } from '@/lib/types';
 
 interface FinanceNewsCardProps { item: NewsItem }
 
-const LABELS: Record<string, string> = { hn: 'Hacker News', '36kr': '36kr', sspai: '少数派' };
+const LABELS: Record<string, string> = { hn: 'Hacker News', marketwatch: 'MarketWatch', ft: 'Financial Times', cnbc: 'CNBC' };
 
 function timeAgo(iso: string): string {
   const diff = (Date.now() - new Date(iso).getTime()) / 1000;
