@@ -1,64 +1,65 @@
-import type { GithubRepo, NewsItem, Quote, DonationRecord } from './types';
+import type { GithubRepo, NewsItem, Quote } from './types';
 
-// Re-export kv only when configured; otherwise export a no-op stub
-// so the app works locally without Vercel KV credentials.
-let _kv: typeof import('@vercel/kv').kv | null = null;
+// Redis client — uses ioredis when REDIS_URL is set, no-op stub otherwise
+let _redis: import('ioredis').Redis | null = null;
 
-function getKv() {
-  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return null;
-  if (!_kv) {
-    // Dynamic require to avoid module-load errors when env vars are missing
-    _kv = require('@vercel/kv').kv;
+function getRedis() {
+  if (!process.env.REDIS_URL) return null;
+  if (!_redis) {
+    const Redis = require('ioredis');
+    _redis = new Redis(process.env.REDIS_URL, { lazyConnect: false, maxRetriesPerRequest: 1 });
   }
-  return _kv;
+  return _redis;
 }
 
 export async function kvGet<T>(key: string): Promise<T | null> {
-  const kv = getKv();
-  if (!kv) return null;
-  try { return await kv.get<T>(key); }
-  catch { return null; }
+  const r = getRedis();
+  if (!r) return null;
+  try {
+    const val = await r.get(key);
+    if (!val) return null;
+    return JSON.parse(val) as T;
+  } catch { return null; }
 }
 
 export async function kvSet(key: string, value: unknown, exSeconds: number): Promise<void> {
-  const kv = getKv();
-  if (!kv) return;
-  try { await kv.set(key, value, { ex: exSeconds }); }
+  const r = getRedis();
+  if (!r) return;
+  try { await r.set(key, JSON.stringify(value), 'EX', exSeconds); }
   catch { /* ignore */ }
 }
 
 export async function kvIncr(key: string): Promise<void> {
-  const kv = getKv();
-  if (!kv) return;
-  try { await kv.incr(key); }
+  const r = getRedis();
+  if (!r) return;
+  try { await r.incr(key); }
   catch { /* ignore */ }
 }
 
 export async function kvExpire(key: string, seconds: number): Promise<void> {
-  const kv = getKv();
-  if (!kv) return;
-  try { await kv.expire(key, seconds); }
+  const r = getRedis();
+  if (!r) return;
+  try { await r.expire(key, seconds); }
   catch { /* ignore */ }
 }
 
 export async function kvZadd(key: string, score: number, member: string): Promise<void> {
-  const kv = getKv();
-  if (!kv) return;
-  try { await kv.zadd(key, { score, member }); }
+  const r = getRedis();
+  if (!r) return;
+  try { await r.zadd(key, score, member); }
   catch { /* ignore */ }
 }
 
 export async function kvZrange(key: string, start: number, stop: number, rev = false): Promise<string[]> {
-  const kv = getKv();
-  if (!kv) return [];
+  const r = getRedis();
+  if (!r) return [];
   try {
-    const opts = rev ? { rev: true } : {};
-    return (await kv.zrange(key, start, stop, opts)) as string[];
-  }
-  catch { return []; }
+    if (rev) return await r.zrevrange(key, start, stop);
+    return await r.zrange(key, start, stop);
+  } catch { return []; }
 }
 
-// ── Mock fixtures (used when KV is empty or unconfigured) ──────────────────
+// ── Mock fixtures (used when Redis is empty or unconfigured) ──────────────────
 
 export const MOCK_GITHUB: GithubRepo[] = [
   { rank: 1, owner: 'microsoft', name: 'autogen', description: 'Multi-agent conversation framework for building LLM applications at scale', language: 'Python', languageColor: '#3572A5', stars: '142.3k', todayStars: '1,234 stars today', url: 'https://github.com/microsoft/autogen' },
