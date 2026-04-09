@@ -1,0 +1,84 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "ClawHub" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e7]
+          - generic [ref=e8]: ClawHub
+        - navigation [ref=e9]:
+          - link "Skills" [ref=e10] [cursor=pointer]:
+            - /url: /skills
+          - link "Plugins" [ref=e11] [cursor=pointer]:
+            - /url: /plugins
+          - link "Search" [ref=e12] [cursor=pointer]:
+            - /url: /skills?focus=search
+            - img [ref=e13]
+            - text: Search
+          - link "About" [ref=e16] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=e17]:
+          - group "Theme mode" [ref=e19]:
+            - radio "System theme" [checked] [ref=e20] [cursor=pointer]:
+              - img [ref=e21]
+            - radio "Light theme" [ref=e23] [cursor=pointer]:
+              - img [ref=e24]
+            - radio "Dark theme" [ref=e30] [cursor=pointer]:
+              - img [ref=e31]
+          - button "Sign in with GitHub" [ref=e33]:
+            - generic [ref=e34]: Sign in
+            - generic [ref=e35]: with GitHub
+    - main [ref=e36]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - generic [ref=e41]: A versioned registry for AI agent skills
+          - heading "ClawHub, the skill dock for sharp agents." [level=1] [ref=e42]
+          - paragraph [ref=e43]: Browse, install, and publish skill packs. Versioned like npm, searchable with vectors, no gatekeeping.
+          - generic [ref=e44]:
+            - link "Browse skills" [ref=e45] [cursor=pointer]:
+              - /url: /skills?nonSuspicious=true
+              - button "Browse skills" [ref=e46]:
+                - text: Browse skills
+                - img [ref=e47]
+            - link "Publish Skill" [ref=e49] [cursor=pointer]:
+              - /url: /publish-skill
+              - button "Publish Skill" [ref=e50]
+        - generic [ref=e52]:
+          - generic [ref=e53]: Search skills. Versioned, rollback-ready.
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - generic [ref=e56]: "Install any skill folder in one shot:"
+              - tablist "Install command" [ref=e57]:
+                - tab "npm" [selected] [ref=e58] [cursor=pointer]
+                - tab "pnpm" [ref=e59] [cursor=pointer]
+                - tab "bun" [ref=e60] [cursor=pointer]
+            - generic [ref=e61]: npx clawhub@latest install sonoscli
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - heading "Staff Picks" [level=2] [ref=e67]
+          - paragraph [ref=e68]: Curated signal — highlighted for quick trust.
+        - link "View all" [ref=e69] [cursor=pointer]:
+          - /url: /skills?highlighted=true
+      - generic [ref=e145]:
+        - generic [ref=e146]:
+          - heading "Popular skills" [level=2] [ref=e147]
+          - paragraph [ref=e148]: Most-downloaded, verified picks.
+        - link "See all skills" [ref=e223] [cursor=pointer]:
+          - /url: /skills?nonSuspicious=true
+          - button "See all skills" [ref=e224]:
+            - text: See all skills
+            - img [ref=e225]
+    - contentinfo [ref=e227]:
+      - generic [ref=e229]:
+        - generic [ref=e230]: ClawHub
+        - link "OpenClaw" [ref=e231] [cursor=pointer]:
+          - /url: https://openclaw.ai
+        - link "Vercel" [ref=e232] [cursor=pointer]:
+          - /url: https://vercel.com
+        - link "Convex" [ref=e233] [cursor=pointer]:
+          - /url: https://www.convex.dev
+        - link "Open source (MIT)" [ref=e234] [cursor=pointer]:
+          - /url: https://github.com/openclaw/clawhub
+        - link "Peter Steinberger" [ref=e235] [cursor=pointer]:
+          - /url: https://steipete.me
+  - region "Notifications alt+T"

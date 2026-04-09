@@ -1,0 +1,6 @@
+[    2599ms] [LOG] 集群标示：others-node-prod-0 @ https://skillhub.cn/:101
+[    3656ms] [WARNING] current domain not supported by beacon! @ https://dscache.tencent-cloud.cn/ecache/qcstat/other/qcloudStatApi.js?max_age=31536000:3
+[    3662ms] [WARNING] current domain not supported by sensors! @ https://dscache.tencent-cloud.cn/ecache/qcstat/other/qcloudStatApi.js?max_age=31536000:5
+[    3791ms] [ERROR] Access to fetch at 'https://dnspod.cloud.tencent.com/ajax/rainbow?action=getRainbowConfig' from origin 'https://skillhub.cn' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://skillhub.cn/:0
+[    3792ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://dnspod.cloud.tencent.com/ajax/rainbow?action=getRainbowConfig:0
+[    4114ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://api.skillhub.cn/api/v1/auth/me:0

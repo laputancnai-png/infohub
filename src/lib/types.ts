@@ -30,6 +30,20 @@ export interface Quote {
   group: 'us' | 'hk' | 'cn' | 'commodity' | 'fx';
 }
 
+export interface AgentSkill {
+  rank: number;
+  name: string;
+  nameZh?: string;
+  description: string;
+  descriptionZh?: string;
+  author: string;
+  downloads: number;
+  stars: number;
+  url: string;
+  source: 'skillhub' | 'clawhub';
+  category: string;
+}
+
 export interface DonationRecord {
   method: 'wechat' | 'alipay' | 'paypal' | 'bmc';
   ts: number;

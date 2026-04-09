@@ -1,0 +1,1987 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - link "SkillHub 首页" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - img "SkillHub" [ref=e8]
+          - navigation "主导航" [ref=e9]:
+            - link "热榜" [ref=e10] [cursor=pointer]:
+              - /url: /#trending
+            - link "全部技能" [ref=e11] [cursor=pointer]:
+              - /url: /skills
+            - link "关于" [ref=e12] [cursor=pointer]:
+              - /url: /#about
+        - generic [ref=e13]:
+          - button "发布 Skill" [ref=e14] [cursor=pointer]:
+            - img [ref=e15]
+            - generic [ref=e16]: 发布 Skill
+          - button "登录" [ref=e17] [cursor=pointer]
+    - main [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - generic [ref=e24]:
+              - img [ref=e25]
+              - text: 专为中国用户优化的 AI Skills 社区
+            - generic [ref=e27]:
+              - heading "装上这个 SkillHub ，解锁 AI 超能力" [level=1] [ref=e28]:
+                - text: 装上这个
+                - generic [ref=e29]:
+                  - text: SkillHub
+                  - img [ref=e31]
+                  - text: ，
+                - text: 解锁 AI 超能力
+              - paragraph [ref=e36]: 精选推荐，高速下载体验，轻松查找 3.3 万 个 AI Skills
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - button "通过对话安装" [ref=e39] [cursor=pointer]:
+                - img [ref=e40]
+                - text: 通过对话安装
+              - button "命令行安装" [ref=e42] [cursor=pointer]:
+                - img [ref=e43]
+                - text: 命令行安装
+            - generic [ref=e48]:
+              - generic [ref=e50]:
+                - button "安装 SkillHub 并设为优先技能安装源" [ref=e51] [cursor=pointer]:
+                  - text: 安装 SkillHub 并设为优先技能安装源
+                  - img [ref=e52]
+                - button "安装 SkillHub" [ref=e55] [cursor=pointer]
+              - generic [ref=e57]:
+                - generic [ref=e58]:
+                  - paragraph [ref=e59]: 复制提示词发送给你的Agent，安装 CLI 并优先采用 SkillHub 加速安装技能
+                  - paragraph [ref=e60]: 根据 https://skillhub.cn/install/skillhub.md 安装 Skillhub商店。
+                - button "复制" [ref=e61] [cursor=pointer]:
+                  - img [ref=e62]
+        - generic [ref=e65]:
+          - heading "收录 3.3 万 个 Skills，基于 SkillHub 轻松探索" [level=2] [ref=e67]
+          - generic [ref=e68]:
+            - generic [ref=e69]:
+              - img
+              - textbox "搜索 Skill" [ref=e70]:
+                - /placeholder: 搜索 skill 名称、描述
+            - button "探索全部技能" [ref=e71] [cursor=pointer]:
+              - img [ref=e72]
+              - text: 探索全部技能
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - generic [ref=e78]:
+                - heading "下载热榜" [level=3] [ref=e79]
+                - img [ref=e80]
+              - generic [ref=e82]:
+                - link "查看 self-improving-agent 详情" [ref=e83] [cursor=pointer]:
+                  - /url: /skills/self-improving-agent
+                  - generic [ref=e84]: S
+                  - generic [ref=e85]:
+                    - generic [ref=e86]: self-improving-agent
+                    - generic [ref=e87]:
+                      - generic [ref=e88]: AI增强
+                      - generic [ref=e89]:
+                        - img [ref=e90]
+                        - text: 2.8 千
+                      - generic [ref=e93]:
+                        - img [ref=e94]
+                        - text: 41.8 万
+                - link "查看 Find Skills 详情" [ref=e96] [cursor=pointer]:
+                  - /url: /skills/find-skills
+                  - generic [ref=e97]: F
+                  - generic [ref=e98]:
+                    - generic [ref=e99]: Find Skills
+                    - generic [ref=e100]:
+                      - generic [ref=e101]: 工具
+                      - generic [ref=e102]:
+                        - img [ref=e103]
+                        - text: "907"
+                      - generic [ref=e106]:
+                        - img [ref=e107]
+                        - text: 30.4 万
+                - link "查看 Summarize 详情" [ref=e109] [cursor=pointer]:
+                  - /url: /skills/summarize
+                  - generic [ref=e110]: S
+                  - generic [ref=e111]:
+                    - generic [ref=e112]: Summarize
+                    - generic [ref=e113]:
+                      - generic [ref=e114]: 信息处理
+                      - generic [ref=e115]:
+                        - img [ref=e116]
+                        - text: "637"
+                      - generic [ref=e119]:
+                        - img [ref=e120]
+                        - text: 27.5 万
+                - link "查看 Agent Browser 详情" [ref=e122] [cursor=pointer]:
+                  - /url: /skills/agent-browser
+                  - generic [ref=e123]: A
+                  - generic [ref=e124]:
+                    - generic [ref=e125]: Agent Browser
+                    - generic [ref=e126]:
+                      - generic [ref=e127]: 浏览器自动化
+                      - generic [ref=e128]:
+                        - img [ref=e129]
+                        - text: "597"
+                      - generic [ref=e132]:
+                        - img [ref=e133]
+                        - text: 18.8 万
+                - link "查看 Github 详情" [ref=e135] [cursor=pointer]:
+                  - /url: /skills/github
+                  - generic [ref=e136]: G
+                  - generic [ref=e137]:
+                    - generic [ref=e138]: Github
+                    - generic [ref=e139]:
+                      - generic [ref=e140]: 开发工具
+                      - generic [ref=e141]:
+                        - img [ref=e142]
+                        - text: "376"
+                      - generic [ref=e145]:
+                        - img [ref=e146]
+                        - text: 17.9 万
+                - link "查看 Self-Improving + Proactive Agent 详情" [ref=e148] [cursor=pointer]:
+                  - /url: /skills/self-improving
+                  - generic [ref=e149]: S
+                  - generic [ref=e150]:
+                    - generic [ref=e151]: Self-Improving + Proactive Agent
+                    - generic [ref=e152]:
+                      - generic [ref=e153]:
+                        - img [ref=e154]
+                        - text: "694"
+                      - generic [ref=e157]:
+                        - img [ref=e158]
+                        - text: 17.8 万
+                - link "查看 ontology 详情" [ref=e160] [cursor=pointer]:
+                  - /url: /skills/ontology
+                  - generic [ref=e161]: O
+                  - generic [ref=e162]:
+                    - generic [ref=e163]: ontology
+                    - generic [ref=e164]:
+                      - generic [ref=e165]: 知识管理
+                      - generic [ref=e166]:
+                        - img [ref=e167]
+                        - text: "406"
+                      - generic [ref=e170]:
+                        - img [ref=e171]
+                        - text: 17.2 万
+                - link "查看 Skill Vetter 详情" [ref=e173] [cursor=pointer]:
+                  - /url: /skills/skill-vetter
+                  - generic [ref=e174]: S
+                  - generic [ref=e175]:
+                    - generic [ref=e176]: Skill Vetter
+                    - generic [ref=e177]:
+                      - generic [ref=e178]:
+                        - img [ref=e179]
+                        - text: "432"
+                      - generic [ref=e182]:
+                        - img [ref=e183]
+                        - text: 15.5 万
+                - link "查看 Weather 详情" [ref=e185] [cursor=pointer]:
+                  - /url: /skills/weather
+                  - generic [ref=e186]: W
+                  - generic [ref=e187]:
+                    - generic [ref=e188]: Weather
+                    - generic [ref=e189]:
+                      - generic [ref=e190]: 垂直场景
+                      - generic [ref=e191]:
+                        - img [ref=e192]
+                        - text: "295"
+                      - generic [ref=e195]:
+                        - img [ref=e196]
+                        - text: 14.0 万
+                - link "查看 Proactive Agent 详情" [ref=e198] [cursor=pointer]:
+                  - /url: /skills/proactive-agent
+                  - generic [ref=e199]: P
+                  - generic [ref=e200]:
+                    - generic [ref=e201]: Proactive Agent
+                    - generic [ref=e202]:
+                      - generic [ref=e203]: AI增强
+                      - generic [ref=e204]:
+                        - img [ref=e205]
+                        - text: "559"
+                      - generic [ref=e208]:
+                        - img [ref=e209]
+                        - text: 14.0 万
+                - link "查看 Gog 详情" [ref=e211] [cursor=pointer]:
+                  - /url: /skills/gog
+                  - generic [ref=e212]: G
+                  - generic [ref=e213]:
+                    - generic [ref=e214]: Gog
+                    - generic [ref=e215]:
+                      - generic [ref=e216]: 办公协同
+                      - generic [ref=e217]:
+                        - img [ref=e218]
+                        - text: "745"
+                      - generic [ref=e221]:
+                        - img [ref=e222]
+                        - text: 13.2 万
+                - link "查看 CodeConductor.ai 详情" [ref=e224] [cursor=pointer]:
+                  - /url: /skills/codeconductor
+                  - generic [ref=e225]: C
+                  - generic [ref=e226]:
+                    - generic [ref=e227]: CodeConductor.ai
+                    - generic [ref=e228]:
+                      - generic [ref=e229]:
+                        - img [ref=e230]
+                        - text: "0"
+                      - generic [ref=e233]:
+                        - img [ref=e234]
+                        - text: 10.6 万
+                - link "查看 Nano Banana Pro 详情" [ref=e236] [cursor=pointer]:
+                  - /url: /skills/nano-banana-pro
+                  - generic [ref=e237]: "N"
+                  - generic [ref=e238]:
+                    - generic [ref=e239]: Nano Banana Pro
+                    - generic [ref=e240]:
+                      - generic [ref=e241]: AI增强
+                      - generic [ref=e242]:
+                        - img [ref=e243]
+                        - text: "275"
+                      - generic [ref=e246]:
+                        - img [ref=e247]
+                        - text: 10.3 万
+                - link "查看 Multi Search Engine 详情" [ref=e249] [cursor=pointer]:
+                  - /url: /skills/multi-search-engine
+                  - generic [ref=e250]: M
+                  - generic [ref=e251]:
+                    - generic [ref=e252]: Multi Search Engine
+                    - generic [ref=e253]:
+                      - generic [ref=e254]:
+                        - img [ref=e255]
+                        - text: "299"
+                      - generic [ref=e258]:
+                        - img [ref=e259]
+                        - text: 9.7 万
+                - link "查看 Humanizer 详情" [ref=e261] [cursor=pointer]:
+                  - /url: /skills/humanizer
+                  - generic [ref=e262]: H
+                  - generic [ref=e263]:
+                    - generic [ref=e264]: Humanizer
+                    - generic [ref=e265]:
+                      - generic [ref=e266]: AI增强
+                      - generic [ref=e267]:
+                        - img [ref=e268]
+                        - text: "418"
+                      - generic [ref=e271]:
+                        - img [ref=e272]
+                        - text: 9.7 万
+                - link "查看 Baidu Search 详情" [ref=e274] [cursor=pointer]:
+                  - /url: /skills/baidu-search
+                  - generic [ref=e275]: B
+                  - generic [ref=e276]:
+                    - generic [ref=e277]: Baidu Search
+                    - generic [ref=e278]:
+                      - generic [ref=e279]: 搜索研究
+                      - generic [ref=e280]:
+                        - img [ref=e281]
+                        - text: "169"
+                      - generic [ref=e284]:
+                        - img [ref=e285]
+                        - text: 8.8 万
+                - link "查看 Obsidian 详情" [ref=e287] [cursor=pointer]:
+                  - /url: /skills/obsidian
+                  - generic [ref=e288]: O
+                  - generic [ref=e289]:
+                    - generic [ref=e290]: Obsidian
+                    - generic [ref=e291]:
+                      - generic [ref=e292]: 知识管理
+                      - generic [ref=e293]:
+                        - img [ref=e294]
+                        - text: "274"
+                      - generic [ref=e297]:
+                        - img [ref=e298]
+                        - text: 8.7 万
+                - link "查看 AdMapix 详情" [ref=e300] [cursor=pointer]:
+                  - /url: /skills/admapix
+                  - generic [ref=e301]: A
+                  - generic [ref=e302]:
+                    - generic [ref=e303]: AdMapix
+                    - generic [ref=e304]:
+                      - generic [ref=e305]:
+                        - img [ref=e306]
+                        - text: "202"
+                      - generic [ref=e309]:
+                        - img [ref=e310]
+                        - text: 8.5 万
+                - link "查看 Nano Pdf 详情" [ref=e312] [cursor=pointer]:
+                  - /url: /skills/nano-pdf
+                  - generic [ref=e313]: "N"
+                  - generic [ref=e314]:
+                    - generic [ref=e315]: Nano Pdf
+                    - generic [ref=e316]:
+                      - generic [ref=e317]: 信息处理
+                      - generic [ref=e318]:
+                        - img [ref=e319]
+                        - text: "148"
+                      - generic [ref=e322]:
+                        - img [ref=e323]
+                        - text: 7.6 万
+                - link "查看 API Gateway 详情" [ref=e325] [cursor=pointer]:
+                  - /url: /skills/api-gateway
+                  - generic [ref=e326]: A
+                  - generic [ref=e327]:
+                    - generic [ref=e328]: API Gateway
+                    - generic [ref=e329]:
+                      - generic [ref=e330]: 办公协同
+                      - generic [ref=e331]:
+                        - img [ref=e332]
+                        - text: "275"
+                      - generic [ref=e335]:
+                        - img [ref=e336]
+                        - text: 7.2 万
+                - link "查看 Notion 详情" [ref=e338] [cursor=pointer]:
+                  - /url: /skills/notion
+                  - generic [ref=e339]: "N"
+                  - generic [ref=e340]:
+                    - generic [ref=e341]: Notion
+                    - generic [ref=e342]:
+                      - generic [ref=e343]: 知识管理
+                      - generic [ref=e344]:
+                        - img [ref=e345]
+                        - text: "190"
+                      - generic [ref=e348]:
+                        - img [ref=e349]
+                        - text: 6.8 万
+                - link "查看 Auto-Updater Skill 详情" [ref=e351] [cursor=pointer]:
+                  - /url: /skills/auto-updater
+                  - generic [ref=e352]: A
+                  - generic [ref=e353]:
+                    - generic [ref=e354]: Auto-Updater Skill
+                    - generic [ref=e355]:
+                      - generic [ref=e356]: AI增强
+                      - generic [ref=e357]:
+                        - img [ref=e358]
+                        - text: "282"
+                      - generic [ref=e361]:
+                        - img [ref=e362]
+                        - text: 6.6 万
+                - link "查看 Skill Creator 详情" [ref=e364] [cursor=pointer]:
+                  - /url: /skills/skill-creator
+                  - generic [ref=e365]: S
+                  - generic [ref=e366]:
+                    - generic [ref=e367]: Skill Creator
+                    - generic [ref=e368]:
+                      - generic [ref=e369]: AI增强
+                      - generic [ref=e370]:
+                        - img [ref=e371]
+                        - text: "152"
+                      - generic [ref=e374]:
+                        - img [ref=e375]
+                        - text: 6.6 万
+                - link "查看 Sonoscli 详情" [ref=e377] [cursor=pointer]:
+                  - /url: /skills/sonoscli
+                  - generic [ref=e378]: S
+                  - generic [ref=e379]:
+                    - generic [ref=e380]: Sonoscli
+                    - generic [ref=e381]:
+                      - generic [ref=e382]: 垂直场景
+                      - generic [ref=e383]:
+                        - img [ref=e384]
+                        - text: "41"
+                      - generic [ref=e387]:
+                        - img [ref=e388]
+                        - text: 6.5 万
+                - link "查看 Openai Whisper 详情" [ref=e390] [cursor=pointer]:
+                  - /url: /skills/openai-whisper
+                  - generic [ref=e391]: O
+                  - generic [ref=e392]:
+                    - generic [ref=e393]: Openai Whisper
+                    - generic [ref=e394]:
+                      - generic [ref=e395]: 多媒体
+                      - generic [ref=e396]:
+                        - img [ref=e397]
+                        - text: "215"
+                      - generic [ref=e400]:
+                        - img [ref=e401]
+                        - text: 6.3 万
+                - link "查看 Word / DOCX 详情" [ref=e403] [cursor=pointer]:
+                  - /url: /skills/word-docx
+                  - generic [ref=e404]: W
+                  - generic [ref=e405]:
+                    - generic [ref=e406]: Word / DOCX
+                    - generic [ref=e407]:
+                      - generic [ref=e408]:
+                        - img [ref=e409]
+                        - text: "147"
+                      - generic [ref=e412]:
+                        - img [ref=e413]
+                        - text: 6.0 万
+                - link "查看 Free Ride - Unlimited free AI 详情" [ref=e415] [cursor=pointer]:
+                  - /url: /skills/free-ride
+                  - generic [ref=e416]: F
+                  - generic [ref=e417]:
+                    - generic [ref=e418]: Free Ride - Unlimited free AI
+                    - generic [ref=e419]:
+                      - generic [ref=e420]: AI增强
+                      - generic [ref=e421]:
+                        - img [ref=e422]
+                        - text: "347"
+                      - generic [ref=e425]:
+                        - img [ref=e426]
+                        - text: 6.0 万
+                - link "查看 Excel / XLSX 详情" [ref=e428] [cursor=pointer]:
+                  - /url: /skills/excel-xlsx
+                  - generic [ref=e429]: E
+                  - generic [ref=e430]:
+                    - generic [ref=e431]: Excel / XLSX
+                    - generic [ref=e432]:
+                      - generic [ref=e433]:
+                        - img [ref=e434]
+                        - text: "123"
+                      - generic [ref=e437]:
+                        - img [ref=e438]
+                        - text: 5.7 万
+                - link "查看 video-generator-seedance 详情" [ref=e440] [cursor=pointer]:
+                  - /url: /skills/video-generator-seedance
+                  - generic [ref=e441]: V
+                  - generic [ref=e442]:
+                    - generic [ref=e443]: video-generator-seedance
+                    - generic [ref=e444]:
+                      - generic [ref=e445]:
+                        - img [ref=e446]
+                        - text: "1"
+                      - generic [ref=e449]:
+                        - img [ref=e450]
+                        - text: 5.6 万
+                - link "查看 Automation Workflows 详情" [ref=e452] [cursor=pointer]:
+                  - /url: /skills/automation-workflows
+                  - generic [ref=e453]: A
+                  - generic [ref=e454]:
+                    - generic [ref=e455]: Automation Workflows
+                    - generic [ref=e456]:
+                      - generic [ref=e457]: 自动化
+                      - generic [ref=e458]:
+                        - img [ref=e459]
+                        - text: "182"
+                      - generic [ref=e462]:
+                        - img [ref=e463]
+                        - text: 5.5 万
+                - link "查看 Mcporter 详情" [ref=e465] [cursor=pointer]:
+                  - /url: /skills/mcporter
+                  - generic [ref=e466]: M
+                  - generic [ref=e467]:
+                    - generic [ref=e468]: Mcporter
+                    - generic [ref=e469]:
+                      - generic [ref=e470]: 开发工具
+                      - generic [ref=e471]:
+                        - img [ref=e472]
+                        - text: "140"
+                      - generic [ref=e475]:
+                        - img [ref=e476]
+                        - text: 5.5 万
+                - link "查看 Agent Browser 详情" [ref=e478] [cursor=pointer]:
+                  - /url: /skills/agent-browser-clawdbot
+                  - generic [ref=e479]: A
+                  - generic [ref=e480]:
+                    - generic [ref=e481]: Agent Browser
+                    - generic [ref=e482]:
+                      - generic [ref=e483]:
+                        - img [ref=e484]
+                        - text: "164"
+                      - generic [ref=e487]:
+                        - img [ref=e488]
+                        - text: 5.1 万
+                - link "查看 Molt Speak 详情" [ref=e490] [cursor=pointer]:
+                  - /url: /skills/moltspeak
+                  - generic [ref=e491]: M
+                  - generic [ref=e492]:
+                    - generic [ref=e493]: Molt Speak
+                    - generic [ref=e494]:
+                      - generic [ref=e495]:
+                        - img [ref=e496]
+                        - text: "2"
+                      - generic [ref=e499]:
+                        - img [ref=e500]
+                        - text: 5.1 万
+                - link "查看 Brave Search 详情" [ref=e502] [cursor=pointer]:
+                  - /url: /skills/brave-search
+                  - generic [ref=e503]: B
+                  - generic [ref=e504]:
+                    - generic [ref=e505]: Brave Search
+                    - generic [ref=e506]:
+                      - generic [ref=e507]: 搜索研究
+                      - generic [ref=e508]:
+                        - img [ref=e509]
+                        - text: "151"
+                      - generic [ref=e512]:
+                        - img [ref=e513]
+                        - text: 5.0 万
+                - link "查看 Football Automated Value Betting 详情" [ref=e515] [cursor=pointer]:
+                  - /url: /skills/football-automated-value-betting
+                  - generic [ref=e516]: F
+                  - generic [ref=e517]:
+                    - generic [ref=e518]: Football Automated Value Betting
+                    - generic [ref=e519]:
+                      - generic [ref=e520]:
+                        - img [ref=e521]
+                        - text: "0"
+                      - generic [ref=e524]:
+                        - img [ref=e525]
+                        - text: 4.7 万
+                - link "查看 Stock Analysis 详情" [ref=e527] [cursor=pointer]:
+                  - /url: /skills/stock-analysis
+                  - generic [ref=e528]: S
+                  - generic [ref=e529]:
+                    - generic [ref=e530]: Stock Analysis
+                    - generic [ref=e531]:
+                      - generic [ref=e532]: 数据分析
+                      - generic [ref=e533]:
+                        - img [ref=e534]
+                        - text: "164"
+                      - generic [ref=e537]:
+                        - img [ref=e538]
+                        - text: 4.7 万
+                - link "查看 Tavily 搜索 详情" [ref=e540] [cursor=pointer]:
+                  - /url: /skills/openclaw-tavily-search
+                  - generic [ref=e541]: T
+                  - generic [ref=e542]:
+                    - generic [ref=e543]: Tavily 搜索
+                    - generic [ref=e544]:
+                      - generic [ref=e545]:
+                        - img [ref=e546]
+                        - text: "77"
+                      - generic [ref=e549]:
+                        - img [ref=e550]
+                        - text: 4.6 万
+                - link "查看 Humanize AI text 详情" [ref=e552] [cursor=pointer]:
+                  - /url: /skills/humanize-ai-text
+                  - generic [ref=e553]: H
+                  - generic [ref=e554]:
+                    - generic [ref=e555]: Humanize AI text
+                    - generic [ref=e556]:
+                      - generic [ref=e557]:
+                        - img [ref=e558]
+                        - text: "144"
+                      - generic [ref=e561]:
+                        - img [ref=e562]
+                        - text: 4.3 万
+                - link "查看 Desktop Control 详情" [ref=e564] [cursor=pointer]:
+                  - /url: /skills/desktop-control
+                  - generic [ref=e565]: D
+                  - generic [ref=e566]:
+                    - generic [ref=e567]: Desktop Control
+                    - generic [ref=e568]:
+                      - generic [ref=e569]:
+                        - img [ref=e570]
+                        - text: "215"
+                      - generic [ref=e573]:
+                        - img [ref=e574]
+                        - text: 4.1 万
+                - link "查看 Elite Longterm Memory 详情" [ref=e576] [cursor=pointer]:
+                  - /url: /skills/elite-longterm-memory
+                  - generic [ref=e577]: E
+                  - generic [ref=e578]:
+                    - generic [ref=e579]: Elite Longterm Memory
+                    - generic [ref=e580]:
+                      - generic [ref=e581]: AI增强
+                      - generic [ref=e582]:
+                        - img [ref=e583]
+                        - text: "133"
+                      - generic [ref=e586]:
+                        - img [ref=e587]
+                        - text: 3.9 万
+                - link "查看 Browser Use 详情" [ref=e589] [cursor=pointer]:
+                  - /url: /skills/browser-use
+                  - generic [ref=e590]: B
+                  - generic [ref=e591]:
+                    - generic [ref=e592]: Browser Use
+                    - generic [ref=e593]:
+                      - generic [ref=e594]: 浏览器自动化
+                      - generic [ref=e595]:
+                        - img [ref=e596]
+                        - text: "65"
+                      - generic [ref=e599]:
+                        - img [ref=e600]
+                        - text: 3.8 万
+                - link "查看 YouTube Watcher 详情" [ref=e602] [cursor=pointer]:
+                  - /url: /skills/youtube-watcher
+                  - generic [ref=e603]: "Y"
+                  - generic [ref=e604]:
+                    - generic [ref=e605]: YouTube Watcher
+                    - generic [ref=e606]:
+                      - generic [ref=e607]: 信息处理
+                      - generic [ref=e608]:
+                        - img [ref=e609]
+                        - text: "218"
+                      - generic [ref=e612]:
+                        - img [ref=e613]
+                        - text: 3.8 万
+                - link "查看 ByteRover 详情" [ref=e615] [cursor=pointer]:
+                  - /url: /skills/byterover
+                  - generic [ref=e616]: B
+                  - generic [ref=e617]:
+                    - generic [ref=e618]: ByteRover
+                    - generic [ref=e619]:
+                      - generic [ref=e620]: 知识管理
+                      - generic [ref=e621]:
+                        - img [ref=e622]
+                        - text: "98"
+                      - generic [ref=e625]:
+                        - img [ref=e626]
+                        - text: 3.6 万
+                - link "查看 Agent Memory 详情" [ref=e628] [cursor=pointer]:
+                  - /url: /skills/agent-memory
+                  - generic [ref=e629]: A
+                  - generic [ref=e630]:
+                    - generic [ref=e631]: Agent Memory
+                    - generic [ref=e632]:
+                      - generic [ref=e633]:
+                        - img [ref=e634]
+                        - text: "14"
+                      - generic [ref=e637]:
+                        - img [ref=e638]
+                        - text: 3.6 万
+                - link "查看 web-tools-guide 详情" [ref=e640] [cursor=pointer]:
+                  - /url: /skills/web-tools-guide
+                  - generic [ref=e641]: W
+                  - generic [ref=e642]:
+                    - generic [ref=e643]: web-tools-guide
+                    - generic [ref=e644]:
+                      - generic [ref=e645]:
+                        - img [ref=e646]
+                        - text: "0"
+                      - generic [ref=e649]:
+                        - img [ref=e650]
+                        - text: 3.6 万
+                - link "查看 imap-smtp-email 详情" [ref=e652] [cursor=pointer]:
+                  - /url: /skills/imap-smtp-email
+                  - generic [ref=e653]: I
+                  - generic [ref=e654]:
+                    - generic [ref=e655]: imap-smtp-email
+                    - generic [ref=e656]:
+                      - generic [ref=e657]:
+                        - img [ref=e658]
+                        - text: "79"
+                      - generic [ref=e661]:
+                        - img [ref=e662]
+                        - text: 3.6 万
+                - link "查看 Video Frames 详情" [ref=e664] [cursor=pointer]:
+                  - /url: /skills/video-frames
+                  - generic [ref=e665]: V
+                  - generic [ref=e666]:
+                    - generic [ref=e667]: Video Frames
+                    - generic [ref=e668]:
+                      - generic [ref=e669]: 多媒体
+                      - generic [ref=e670]:
+                        - img [ref=e671]
+                        - text: "79"
+                      - generic [ref=e674]:
+                        - img [ref=e675]
+                        - text: 3.5 万
+                - link "查看 Evolver 详情" [ref=e677] [cursor=pointer]:
+                  - /url: /skills/evolver
+                  - generic [ref=e678]: E
+                  - generic [ref=e679]:
+                    - generic [ref=e680]: Evolver
+                    - generic [ref=e681]:
+                      - generic [ref=e682]:
+                        - img [ref=e683]
+                        - text: "58"
+                      - generic [ref=e686]:
+                        - img [ref=e687]
+                        - text: 3.5 万
+                - link "查看 Clawdbot Documentation Expert 详情" [ref=e689] [cursor=pointer]:
+                  - /url: /skills/clawddocs
+                  - generic [ref=e690]: C
+                  - generic [ref=e691]:
+                    - generic [ref=e692]: Clawdbot Documentation Expert
+                    - generic [ref=e693]:
+                      - generic [ref=e694]: 开发工具
+                      - generic [ref=e695]:
+                        - img [ref=e696]
+                        - text: "256"
+                      - generic [ref=e699]:
+                        - img [ref=e700]
+                        - text: 3.5 万
+                - link "查看 Pdf 详情" [ref=e702] [cursor=pointer]:
+                  - /url: /skills/pdf
+                  - generic [ref=e703]: P
+                  - generic [ref=e704]:
+                    - generic [ref=e705]: Pdf
+                    - generic [ref=e706]:
+                      - generic [ref=e707]:
+                        - img [ref=e708]
+                        - text: "30"
+                      - generic [ref=e711]:
+                        - img [ref=e712]
+                        - text: 3.4 万
+            - generic [ref=e714]:
+              - heading "为你推荐" [level=3] [ref=e716]
+              - generic [ref=e717]:
+                - link "查看 Find Skills 详情" [ref=e718] [cursor=pointer]:
+                  - /url: /skills/find-skills
+                  - generic [ref=e719]: F
+                  - generic [ref=e720]:
+                    - generic [ref=e721]: Find Skills
+                    - generic [ref=e722]:
+                      - generic [ref=e723]: 工具
+                      - generic [ref=e724]:
+                        - img [ref=e725]
+                        - text: "907"
+                      - generic [ref=e728]:
+                        - img [ref=e729]
+                        - text: 30.4 万
+                - link "查看 self-improving-agent 详情" [ref=e731] [cursor=pointer]:
+                  - /url: /skills/self-improving-agent
+                  - generic [ref=e732]: S
+                  - generic [ref=e733]:
+                    - generic [ref=e734]: self-improving-agent
+                    - generic [ref=e735]:
+                      - generic [ref=e736]: AI增强
+                      - generic [ref=e737]:
+                        - img [ref=e738]
+                        - text: 2.8 千
+                      - generic [ref=e741]:
+                        - img [ref=e742]
+                        - text: 41.8 万
+                - link "查看 Summarize 详情" [ref=e744] [cursor=pointer]:
+                  - /url: /skills/summarize
+                  - generic [ref=e745]: S
+                  - generic [ref=e746]:
+                    - generic [ref=e747]: Summarize
+                    - generic [ref=e748]:
+                      - generic [ref=e749]: 信息处理
+                      - generic [ref=e750]:
+                        - img [ref=e751]
+                        - text: "637"
+                      - generic [ref=e754]:
+                        - img [ref=e755]
+                        - text: 27.5 万
+                - link "查看 ima skills 详情" [ref=e757] [cursor=pointer]:
+                  - /url: /skills/ima-skills
+                  - generic [ref=e758]: I
+                  - generic [ref=e759]:
+                    - generic [ref=e760]: ima skills
+                    - generic [ref=e761]:
+                      - generic [ref=e762]:
+                        - img [ref=e763]
+                        - text: "24"
+                      - generic [ref=e766]:
+                        - img [ref=e767]
+                        - text: 2.4 万
+                - link "查看 腾讯会议 详情" [ref=e769] [cursor=pointer]:
+                  - /url: /skills/tencent-meeting-skill
+                  - generic [ref=e770]: 腾
+                  - generic [ref=e771]:
+                    - generic [ref=e772]: 腾讯会议
+                    - generic [ref=e773]:
+                      - generic [ref=e774]:
+                        - img [ref=e775]
+                        - text: "4"
+                      - generic [ref=e778]:
+                        - img [ref=e779]
+                        - text: 3.1 千
+                - link "查看 Agent Browser 详情" [ref=e781] [cursor=pointer]:
+                  - /url: /skills/agent-browser
+                  - generic [ref=e782]: A
+                  - generic [ref=e783]:
+                    - generic [ref=e784]: Agent Browser
+                    - generic [ref=e785]:
+                      - generic [ref=e786]: 浏览器自动化
+                      - generic [ref=e787]:
+                        - img [ref=e788]
+                        - text: "597"
+                      - generic [ref=e791]:
+                        - img [ref=e792]
+                        - text: 18.8 万
+                - link "查看 Tencent COS 详情" [ref=e794] [cursor=pointer]:
+                  - /url: /skills/tencent-cos-skill
+                  - generic [ref=e795]: T
+                  - generic [ref=e796]:
+                    - generic [ref=e797]: Tencent COS
+                    - generic [ref=e798]:
+                      - generic [ref=e799]:
+                        - img [ref=e800]
+                        - text: "4"
+                      - generic [ref=e803]:
+                        - img [ref=e804]
+                        - text: 4.8 千
+                - link "查看 腾讯文档 TENCENT DOCS 详情" [ref=e806] [cursor=pointer]:
+                  - /url: /skills/tencent-docs
+                  - generic [ref=e807]: 腾
+                  - generic [ref=e808]:
+                    - generic [ref=e809]: 腾讯文档 TENCENT DOCS
+                    - generic [ref=e810]:
+                      - generic [ref=e811]:
+                        - img [ref=e812]
+                        - text: "16"
+                      - generic [ref=e815]:
+                        - img [ref=e816]
+                        - text: 2.2 万
+                - link "查看 Cloudbase 详情" [ref=e818] [cursor=pointer]:
+                  - /url: /skills/cloudbase
+                  - generic [ref=e819]: C
+                  - generic [ref=e820]:
+                    - generic [ref=e821]: Cloudbase
+                    - generic [ref=e822]:
+                      - generic [ref=e823]:
+                        - img [ref=e824]
+                        - text: "0"
+                      - generic [ref=e827]:
+                        - img [ref=e828]
+                        - text: 2.9 千
+                - link "查看 Self-Improving + Proactive Agent 详情" [ref=e830] [cursor=pointer]:
+                  - /url: /skills/self-improving
+                  - generic [ref=e831]: S
+                  - generic [ref=e832]:
+                    - generic [ref=e833]: Self-Improving + Proactive Agent
+                    - generic [ref=e834]:
+                      - generic [ref=e835]:
+                        - img [ref=e836]
+                        - text: "694"
+                      - generic [ref=e839]:
+                        - img [ref=e840]
+                        - text: 17.8 万
+                - link "查看 Skill Vetter 详情" [ref=e842] [cursor=pointer]:
+                  - /url: /skills/skill-vetter
+                  - generic [ref=e843]: S
+                  - generic [ref=e844]:
+                    - generic [ref=e845]: Skill Vetter
+                    - generic [ref=e846]:
+                      - generic [ref=e847]:
+                        - img [ref=e848]
+                        - text: "432"
+                      - generic [ref=e851]:
+                        - img [ref=e852]
+                        - text: 15.5 万
+                - link "查看 Proactive Agent 详情" [ref=e854] [cursor=pointer]:
+                  - /url: /skills/proactive-agent
+                  - generic [ref=e855]: P
+                  - generic [ref=e856]:
+                    - generic [ref=e857]: Proactive Agent
+                    - generic [ref=e858]:
+                      - generic [ref=e859]: AI增强
+                      - generic [ref=e860]:
+                        - img [ref=e861]
+                        - text: "559"
+                      - generic [ref=e864]:
+                        - img [ref=e865]
+                        - text: 14.0 万
+                - link "查看 Weather 详情" [ref=e867] [cursor=pointer]:
+                  - /url: /skills/weather
+                  - generic [ref=e868]: W
+                  - generic [ref=e869]:
+                    - generic [ref=e870]: Weather
+                    - generic [ref=e871]:
+                      - generic [ref=e872]: 垂直场景
+                      - generic [ref=e873]:
+                        - img [ref=e874]
+                        - text: "295"
+                      - generic [ref=e877]:
+                        - img [ref=e878]
+                        - text: 14.0 万
+                - link "查看 Humanizer 详情" [ref=e880] [cursor=pointer]:
+                  - /url: /skills/humanizer
+                  - generic [ref=e881]: H
+                  - generic [ref=e882]:
+                    - generic [ref=e883]: Humanizer
+                    - generic [ref=e884]:
+                      - generic [ref=e885]: AI增强
+                      - generic [ref=e886]:
+                        - img [ref=e887]
+                        - text: "418"
+                      - generic [ref=e890]:
+                        - img [ref=e891]
+                        - text: 9.7 万
+                - link "查看 tmap-lbs-skill 详情" [ref=e893] [cursor=pointer]:
+                  - /url: /skills/tmap-lbs-skill
+                  - generic [ref=e894]: T
+                  - generic [ref=e895]:
+                    - generic [ref=e896]: tmap-lbs-skill
+                    - generic [ref=e897]:
+                      - generic [ref=e898]:
+                        - img [ref=e899]
+                        - text: "0"
+                      - generic [ref=e902]:
+                        - img [ref=e903]
+                        - text: "262"
+                - link "查看 Multi Search Engine 详情" [ref=e905] [cursor=pointer]:
+                  - /url: /skills/multi-search-engine
+                  - generic [ref=e906]: M
+                  - generic [ref=e907]:
+                    - generic [ref=e908]: Multi Search Engine
+                    - generic [ref=e909]:
+                      - generic [ref=e910]:
+                        - img [ref=e911]
+                        - text: "299"
+                      - generic [ref=e914]:
+                        - img [ref=e915]
+                        - text: 9.7 万
+                - link "查看 腾讯新闻 详情" [ref=e917] [cursor=pointer]:
+                  - /url: /skills/tencent-news
+                  - generic [ref=e918]: 腾
+                  - generic [ref=e919]:
+                    - generic [ref=e920]: 腾讯新闻
+                    - generic [ref=e921]:
+                      - generic [ref=e922]:
+                        - img [ref=e923]
+                        - text: "0"
+                      - generic [ref=e926]:
+                        - img [ref=e927]
+                        - text: 1.1 千
+                - link "查看 微信支付商品券接入skill 详情" [ref=e929] [cursor=pointer]:
+                  - /url: /skills/wechatpay-product-coupon
+                  - generic [ref=e930]: 微
+                  - generic [ref=e931]:
+                    - generic [ref=e932]: 微信支付商品券接入skill
+                    - generic [ref=e933]:
+                      - generic [ref=e934]:
+                        - img [ref=e935]
+                        - text: "1"
+                      - generic [ref=e938]:
+                        - img [ref=e939]
+                        - text: "383"
+                - link "查看 Nano Pdf 详情" [ref=e941] [cursor=pointer]:
+                  - /url: /skills/nano-pdf
+                  - generic [ref=e942]: "N"
+                  - generic [ref=e943]:
+                    - generic [ref=e944]: Nano Pdf
+                    - generic [ref=e945]:
+                      - generic [ref=e946]: 信息处理
+                      - generic [ref=e947]:
+                        - img [ref=e948]
+                        - text: "148"
+                      - generic [ref=e951]:
+                        - img [ref=e952]
+                        - text: 7.6 万
+                - link "查看 QQBrowserSkill 详情" [ref=e954] [cursor=pointer]:
+                  - /url: /skills/qqbrowser-skill
+                  - generic [ref=e955]: Q
+                  - generic [ref=e956]:
+                    - generic [ref=e957]: QQBrowserSkill
+                    - generic [ref=e958]:
+                      - generic [ref=e959]:
+                        - img [ref=e960]
+                        - text: "4"
+                      - generic [ref=e963]:
+                        - img [ref=e964]
+                        - text: "849"
+                - link "查看 Auto-Updater Skill 详情" [ref=e966] [cursor=pointer]:
+                  - /url: /skills/auto-updater
+                  - generic [ref=e967]: A
+                  - generic [ref=e968]:
+                    - generic [ref=e969]: Auto-Updater Skill
+                    - generic [ref=e970]:
+                      - generic [ref=e971]: AI增强
+                      - generic [ref=e972]:
+                        - img [ref=e973]
+                        - text: "282"
+                      - generic [ref=e976]:
+                        - img [ref=e977]
+                        - text: 6.6 万
+                - link "查看 腾讯频道Skill 详情" [ref=e979] [cursor=pointer]:
+                  - /url: /skills/tencent-channel-community
+                  - generic [ref=e980]: 腾
+                  - generic [ref=e981]:
+                    - generic [ref=e982]: 腾讯频道Skill
+                    - generic [ref=e983]:
+                      - generic [ref=e984]:
+                        - img [ref=e985]
+                        - text: "1"
+                      - generic [ref=e988]:
+                        - img [ref=e989]
+                        - text: "536"
+                - link "查看 Openai Whisper 详情" [ref=e991] [cursor=pointer]:
+                  - /url: /skills/openai-whisper
+                  - generic [ref=e992]: O
+                  - generic [ref=e993]:
+                    - generic [ref=e994]: Openai Whisper
+                    - generic [ref=e995]:
+                      - generic [ref=e996]: 多媒体
+                      - generic [ref=e997]:
+                        - img [ref=e998]
+                        - text: "215"
+                      - generic [ref=e1001]:
+                        - img [ref=e1002]
+                        - text: 6.3 万
+                - link "查看 Tencent Cloud Lighthouse 详情" [ref=e1004] [cursor=pointer]:
+                  - /url: /skills/tencentcloud-lighthouse-skill
+                  - generic [ref=e1005]: T
+                  - generic [ref=e1006]:
+                    - generic [ref=e1007]: Tencent Cloud Lighthouse
+                    - generic [ref=e1008]:
+                      - generic [ref=e1009]:
+                        - img [ref=e1010]
+                        - text: "0"
+                      - generic [ref=e1013]:
+                        - img [ref=e1014]
+                        - text: 9.0 千
+                - link "查看 Agent Browser 详情" [ref=e1016] [cursor=pointer]:
+                  - /url: /skills/agent-browser-2
+                  - generic [ref=e1017]: A
+                  - generic [ref=e1018]:
+                    - generic [ref=e1019]: Agent Browser
+                    - generic [ref=e1020]:
+                      - generic [ref=e1021]:
+                        - img [ref=e1022]
+                        - text: "2"
+                      - generic [ref=e1025]:
+                        - img [ref=e1026]
+                        - text: 4.2 千
+                - link "查看 Mcporter 详情" [ref=e1028] [cursor=pointer]:
+                  - /url: /skills/mcporter
+                  - generic [ref=e1029]: M
+                  - generic [ref=e1030]:
+                    - generic [ref=e1031]: Mcporter
+                    - generic [ref=e1032]:
+                      - generic [ref=e1033]: 开发工具
+                      - generic [ref=e1034]:
+                        - img [ref=e1035]
+                        - text: "140"
+                      - generic [ref=e1038]:
+                        - img [ref=e1039]
+                        - text: 5.5 万
+                - link "查看 Skill Creator 详情" [ref=e1041] [cursor=pointer]:
+                  - /url: /skills/skill-creator
+                  - generic [ref=e1042]: S
+                  - generic [ref=e1043]:
+                    - generic [ref=e1044]: Skill Creator
+                    - generic [ref=e1045]:
+                      - generic [ref=e1046]: AI增强
+                      - generic [ref=e1047]:
+                        - img [ref=e1048]
+                        - text: "152"
+                      - generic [ref=e1051]:
+                        - img [ref=e1052]
+                        - text: 6.6 万
+                - link "查看 Automation Workflows 详情" [ref=e1054] [cursor=pointer]:
+                  - /url: /skills/automation-workflows
+                  - generic [ref=e1055]: A
+                  - generic [ref=e1056]:
+                    - generic [ref=e1057]: Automation Workflows
+                    - generic [ref=e1058]:
+                      - generic [ref=e1059]: 自动化
+                      - generic [ref=e1060]:
+                        - img [ref=e1061]
+                        - text: "182"
+                      - generic [ref=e1064]:
+                        - img [ref=e1065]
+                        - text: 5.5 万
+                - link "查看 video-generator-seedance 详情" [ref=e1067] [cursor=pointer]:
+                  - /url: /skills/video-generator-seedance
+                  - generic [ref=e1068]: V
+                  - generic [ref=e1069]:
+                    - generic [ref=e1070]: video-generator-seedance
+                    - generic [ref=e1071]:
+                      - generic [ref=e1072]:
+                        - img [ref=e1073]
+                        - text: "1"
+                      - generic [ref=e1076]:
+                        - img [ref=e1077]
+                        - text: 5.6 万
+                - link "查看 腾讯乐享知识库 Lexiang Knowledge Base 详情" [ref=e1079] [cursor=pointer]:
+                  - /url: /skills/lexiang-mcp-skill
+                  - generic [ref=e1080]: 腾
+                  - generic [ref=e1081]:
+                    - generic [ref=e1082]: 腾讯乐享知识库 Lexiang Knowledge Base
+                    - generic [ref=e1083]:
+                      - generic [ref=e1084]:
+                        - img [ref=e1085]
+                        - text: "0"
+                      - generic [ref=e1088]:
+                        - img [ref=e1089]
+                        - text: "775"
+                - link "查看 Word / DOCX 详情" [ref=e1091] [cursor=pointer]:
+                  - /url: /skills/word-docx
+                  - generic [ref=e1092]: W
+                  - generic [ref=e1093]:
+                    - generic [ref=e1094]: Word / DOCX
+                    - generic [ref=e1095]:
+                      - generic [ref=e1096]:
+                        - img [ref=e1097]
+                        - text: "147"
+                      - generic [ref=e1100]:
+                        - img [ref=e1101]
+                        - text: 6.0 万
+                - link "查看 Tavily Web Search 详情" [ref=e1103] [cursor=pointer]:
+                  - /url: /skills/tavily-search
+                  - generic [ref=e1104]: T
+                  - generic [ref=e1105]:
+                    - generic [ref=e1106]: Tavily Web Search
+                    - generic [ref=e1107]:
+                      - generic [ref=e1108]: 搜索研究
+                      - generic [ref=e1109]:
+                        - img [ref=e1110]
+                        - text: "0"
+                      - generic [ref=e1113]:
+                        - img [ref=e1114]
+                        - text: 8.0 千
+                - link "查看 Desktop Control 详情" [ref=e1116] [cursor=pointer]:
+                  - /url: /skills/desktop-control
+                  - generic [ref=e1117]: D
+                  - generic [ref=e1118]:
+                    - generic [ref=e1119]: Desktop Control
+                    - generic [ref=e1120]:
+                      - generic [ref=e1121]:
+                        - img [ref=e1122]
+                        - text: "215"
+                      - generic [ref=e1125]:
+                        - img [ref=e1126]
+                        - text: 4.1 万
+                - link "查看 Excel / XLSX 详情" [ref=e1128] [cursor=pointer]:
+                  - /url: /skills/excel-xlsx
+                  - generic [ref=e1129]: E
+                  - generic [ref=e1130]:
+                    - generic [ref=e1131]: Excel / XLSX
+                    - generic [ref=e1132]:
+                      - generic [ref=e1133]:
+                        - img [ref=e1134]
+                        - text: "123"
+                      - generic [ref=e1137]:
+                        - img [ref=e1138]
+                        - text: 5.7 万
+                - link "查看 Humanize AI text 详情" [ref=e1140] [cursor=pointer]:
+                  - /url: /skills/humanize-ai-text
+                  - generic [ref=e1141]: H
+                  - generic [ref=e1142]:
+                    - generic [ref=e1143]: Humanize AI text
+                    - generic [ref=e1144]:
+                      - generic [ref=e1145]:
+                        - img [ref=e1146]
+                        - text: "144"
+                      - generic [ref=e1149]:
+                        - img [ref=e1150]
+                        - text: 4.3 万
+                - link "查看 Video Frames 详情" [ref=e1152] [cursor=pointer]:
+                  - /url: /skills/video-frames
+                  - generic [ref=e1153]: V
+                  - generic [ref=e1154]:
+                    - generic [ref=e1155]: Video Frames
+                    - generic [ref=e1156]:
+                      - generic [ref=e1157]: 多媒体
+                      - generic [ref=e1158]:
+                        - img [ref=e1159]
+                        - text: "79"
+                      - generic [ref=e1162]:
+                        - img [ref=e1163]
+                        - text: 3.5 万
+                - link "查看 Github 详情" [ref=e1165] [cursor=pointer]:
+                  - /url: /skills/github
+                  - generic [ref=e1166]: G
+                  - generic [ref=e1167]:
+                    - generic [ref=e1168]: Github
+                    - generic [ref=e1169]:
+                      - generic [ref=e1170]: 开发工具
+                      - generic [ref=e1171]:
+                        - img [ref=e1172]
+                        - text: "376"
+                      - generic [ref=e1175]:
+                        - img [ref=e1176]
+                        - text: 17.9 万
+                - link "查看 Obsidian 详情" [ref=e1178] [cursor=pointer]:
+                  - /url: /skills/obsidian
+                  - generic [ref=e1179]: O
+                  - generic [ref=e1180]:
+                    - generic [ref=e1181]: Obsidian
+                    - generic [ref=e1182]:
+                      - generic [ref=e1183]: 知识管理
+                      - generic [ref=e1184]:
+                        - img [ref=e1185]
+                        - text: "274"
+                      - generic [ref=e1188]:
+                        - img [ref=e1189]
+                        - text: 8.7 万
+                - link "查看 Notion 详情" [ref=e1191] [cursor=pointer]:
+                  - /url: /skills/notion
+                  - generic [ref=e1192]: "N"
+                  - generic [ref=e1193]:
+                    - generic [ref=e1194]: Notion
+                    - generic [ref=e1195]:
+                      - generic [ref=e1196]: 知识管理
+                      - generic [ref=e1197]:
+                        - img [ref=e1198]
+                        - text: "190"
+                      - generic [ref=e1201]:
+                        - img [ref=e1202]
+                        - text: 6.8 万
+                - link "查看 Clawdhub 详情" [ref=e1204] [cursor=pointer]:
+                  - /url: /skills/clawdhub
+                  - generic [ref=e1205]: C
+                  - generic [ref=e1206]:
+                    - generic [ref=e1207]: Clawdhub
+                    - generic [ref=e1208]:
+                      - generic [ref=e1209]:
+                        - img [ref=e1210]
+                        - text: "206"
+                      - generic [ref=e1213]:
+                        - img [ref=e1214]
+                        - text: 3.1 万
+                - link "查看 EdgeOne ClawScan 详情" [ref=e1216] [cursor=pointer]:
+                  - /url: /skills/edgeone-clawscan
+                  - generic [ref=e1217]: E
+                  - generic [ref=e1218]:
+                    - generic [ref=e1219]: EdgeOne ClawScan
+                    - generic [ref=e1220]:
+                      - generic [ref=e1221]:
+                        - img [ref=e1222]
+                        - text: "94"
+                      - generic [ref=e1225]:
+                        - img [ref=e1226]
+                        - text: 2.0 千
+                - link "查看 TencentCloud ASR 详情" [ref=e1228] [cursor=pointer]:
+                  - /url: /skills/tencentcloud-asr
+                  - generic [ref=e1229]: T
+                  - generic [ref=e1230]:
+                    - generic [ref=e1231]: TencentCloud ASR
+                    - generic [ref=e1232]:
+                      - generic [ref=e1233]:
+                        - img [ref=e1234]
+                        - text: "1"
+                      - generic [ref=e1237]:
+                        - img [ref=e1238]
+                        - text: 1.3 千
+                - link "查看 TencentCloud TTS 详情" [ref=e1240] [cursor=pointer]:
+                  - /url: /skills/tencentcloud-tts
+                  - generic [ref=e1241]: T
+                  - generic [ref=e1242]:
+                    - generic [ref=e1243]: TencentCloud TTS
+                    - generic [ref=e1244]:
+                      - generic [ref=e1245]:
+                        - img [ref=e1246]
+                        - text: "1"
+                      - generic [ref=e1249]:
+                        - img [ref=e1250]
+                        - text: "708"
+                - link "查看 wps_office_auto_skill 详情" [ref=e1252] [cursor=pointer]:
+                  - /url: /skills/wps-office-automation-skill
+                  - generic [ref=e1253]: W
+                  - generic [ref=e1254]:
+                    - generic [ref=e1255]: wps_office_auto_skill
+                    - generic [ref=e1256]:
+                      - generic [ref=e1257]:
+                        - img [ref=e1258]
+                        - text: "0"
+                      - generic [ref=e1261]:
+                        - img [ref=e1262]
+                        - text: 5.2 千
+                - link "查看 tencent-ads-assistant 详情" [ref=e1264] [cursor=pointer]:
+                  - /url: /skills/tencent-ads-assistant
+                  - generic [ref=e1265]: T
+                  - generic [ref=e1266]:
+                    - generic [ref=e1267]: tencent-ads-assistant
+                    - generic [ref=e1268]:
+                      - generic [ref=e1269]:
+                        - img [ref=e1270]
+                        - text: "1"
+                      - generic [ref=e1273]:
+                        - img [ref=e1274]
+                        - text: "595"
+                - link "查看 Baidu Search 详情" [ref=e1276] [cursor=pointer]:
+                  - /url: /skills/baidu-search
+                  - generic [ref=e1277]: B
+                  - generic [ref=e1278]:
+                    - generic [ref=e1279]: Baidu Search
+                    - generic [ref=e1280]:
+                      - generic [ref=e1281]: 搜索研究
+                      - generic [ref=e1282]:
+                        - img [ref=e1283]
+                        - text: "169"
+                      - generic [ref=e1286]:
+                        - img [ref=e1287]
+                        - text: 8.8 万
+                - link "查看 Pdf 详情" [ref=e1289] [cursor=pointer]:
+                  - /url: /skills/pdf
+                  - generic [ref=e1290]: P
+                  - generic [ref=e1291]:
+                    - generic [ref=e1292]: Pdf
+                    - generic [ref=e1293]:
+                      - generic [ref=e1294]:
+                        - img [ref=e1295]
+                        - text: "30"
+                      - generic [ref=e1298]:
+                        - img [ref=e1299]
+                        - text: 3.4 万
+                - link "查看 Data Analysis 详情" [ref=e1301] [cursor=pointer]:
+                  - /url: /skills/data-analysis
+                  - generic [ref=e1302]: D
+                  - generic [ref=e1303]:
+                    - generic [ref=e1304]: Data Analysis
+                    - generic [ref=e1305]:
+                      - generic [ref=e1306]:
+                        - img [ref=e1307]
+                        - text: "57"
+                      - generic [ref=e1310]:
+                        - img [ref=e1311]
+                        - text: 3.0 万
+                - link "查看 Powerpoint / PPTX 详情" [ref=e1313] [cursor=pointer]:
+                  - /url: /skills/powerpoint-pptx
+                  - generic [ref=e1314]: P
+                  - generic [ref=e1315]:
+                    - generic [ref=e1316]: Powerpoint / PPTX
+                    - generic [ref=e1317]:
+                      - generic [ref=e1318]:
+                        - img [ref=e1319]
+                        - text: "58"
+                      - generic [ref=e1322]:
+                        - img [ref=e1323]
+                        - text: 3.0 万
+                - link "查看 Agent Reach 详情" [ref=e1325] [cursor=pointer]:
+                  - /url: /skills/agent-reach
+                  - generic [ref=e1326]: A
+                  - generic [ref=e1327]:
+                    - generic [ref=e1328]: Agent Reach
+                    - generic [ref=e1329]:
+                      - generic [ref=e1330]:
+                        - img [ref=e1331]
+                        - text: "1"
+                      - generic [ref=e1334]:
+                        - img [ref=e1335]
+                        - text: 7.4 千
+            - generic [ref=e1337]:
+              - heading "最近上新" [level=3] [ref=e1339]
+              - generic [ref=e1340]:
+                - link "查看 HR系统：尤里奇+彭+邓+查兰 详情" [ref=e1341] [cursor=pointer]:
+                  - /url: /skills/hr-system-ulrich-peng-deng-charan
+                  - generic [ref=e1342]: H
+                  - generic [ref=e1343]:
+                    - generic [ref=e1344]: HR系统：尤里奇+彭+邓+查兰
+                    - generic [ref=e1345]:
+                      - generic [ref=e1346]:
+                        - img [ref=e1347]
+                        - text: "0"
+                      - generic [ref=e1350]:
+                        - img [ref=e1351]
+                        - text: "1"
+                - link "查看 Tomato Novelist 详情" [ref=e1353] [cursor=pointer]:
+                  - /url: /skills/g113593
+                  - img "Tomato Novelist 图标" [ref=e1354]
+                  - generic [ref=e1355]:
+                    - generic [ref=e1356]: Tomato Novelist
+                    - generic [ref=e1357]:
+                      - generic [ref=e1358]:
+                        - img [ref=e1359]
+                        - text: "0"
+                      - generic [ref=e1362]:
+                        - img [ref=e1363]
+                        - text: "2"
+                - link "查看 智能定时提醒助手 详情" [ref=e1365] [cursor=pointer]:
+                  - /url: /skills/task-scheduler-py
+                  - img "智能定时提醒助手 图标" [ref=e1366]
+                  - generic [ref=e1367]:
+                    - generic [ref=e1368]: 智能定时提醒助手
+                    - generic [ref=e1369]:
+                      - generic [ref=e1370]:
+                        - img [ref=e1371]
+                        - text: "0"
+                      - generic [ref=e1374]:
+                        - img [ref=e1375]
+                        - text: "8"
+                - link "查看 新青年 详情" [ref=e1377] [cursor=pointer]:
+                  - /url: /skills/xinqingnian
+                  - img "新青年 图标" [ref=e1378]
+                  - generic [ref=e1379]:
+                    - generic [ref=e1380]: 新青年
+                    - generic [ref=e1381]:
+                      - generic [ref=e1382]:
+                        - img [ref=e1383]
+                        - text: "0"
+                      - generic [ref=e1386]:
+                        - img [ref=e1387]
+                        - text: "3"
+                - link "查看 祖师爷 详情" [ref=e1389] [cursor=pointer]:
+                  - /url: /skills/zushiye
+                  - generic [ref=e1390]: 祖
+                  - generic [ref=e1391]:
+                    - generic [ref=e1392]: 祖师爷
+                    - generic [ref=e1393]:
+                      - generic [ref=e1394]:
+                        - img [ref=e1395]
+                        - text: "0"
+                      - generic [ref=e1398]:
+                        - img [ref=e1399]
+                        - text: "9"
+                - link "查看 pretext 详情" [ref=e1401] [cursor=pointer]:
+                  - /url: /skills/pretext-text-measurement
+                  - generic [ref=e1402]: P
+                  - generic [ref=e1403]:
+                    - generic [ref=e1404]: pretext
+                    - generic [ref=e1405]:
+                      - generic [ref=e1406]:
+                        - img [ref=e1407]
+                        - text: "0"
+                      - generic [ref=e1410]:
+                        - img [ref=e1411]
+                        - text: "2"
+                - link "查看 股票舆情分析 详情" [ref=e1413] [cursor=pointer]:
+                  - /url: /skills/topnews
+                  - img "股票舆情分析 图标" [ref=e1414]
+                  - generic [ref=e1415]:
+                    - generic [ref=e1416]: 股票舆情分析
+                    - generic [ref=e1417]:
+                      - generic [ref=e1418]:
+                        - img [ref=e1419]
+                        - text: "0"
+                      - generic [ref=e1422]:
+                        - img [ref=e1423]
+                        - text: "13"
+                - link "查看 k线形态选股器 详情" [ref=e1425] [cursor=pointer]:
+                  - /url: /skills/stockmatcher
+                  - img "k线形态选股器 图标" [ref=e1426]
+                  - generic [ref=e1427]:
+                    - generic [ref=e1428]: k线形态选股器
+                    - generic [ref=e1429]:
+                      - generic [ref=e1430]:
+                        - img [ref=e1431]
+                        - text: "0"
+                      - generic [ref=e1434]:
+                        - img [ref=e1435]
+                        - text: "10"
+                - link "查看 元宝派电子宠物 详情" [ref=e1437] [cursor=pointer]:
+                  - /url: /skills/yuanbao-pet
+                  - img "元宝派电子宠物 图标" [ref=e1438]
+                  - generic [ref=e1439]:
+                    - generic [ref=e1440]: 元宝派电子宠物
+                    - generic [ref=e1441]:
+                      - generic [ref=e1442]:
+                        - img [ref=e1443]
+                        - text: "0"
+                      - generic [ref=e1446]:
+                        - img [ref=e1447]
+                        - text: "6"
+                - link "查看 kdocs skill 详情" [ref=e1449] [cursor=pointer]:
+                  - /url: /skills/kdocs-skill
+                  - img "kdocs skill 图标" [ref=e1450]
+                  - generic [ref=e1451]:
+                    - generic [ref=e1452]: kdocs skill
+                    - generic [ref=e1453]:
+                      - generic [ref=e1454]:
+                        - img [ref=e1455]
+                        - text: "0"
+                      - generic [ref=e1458]:
+                        - img [ref=e1459]
+                        - text: "7"
+                - link "查看 初恋 详情" [ref=e1461] [cursor=pointer]:
+                  - /url: /skills/first-love-narrative-healing
+                  - img "初恋 图标" [ref=e1462]
+                  - generic [ref=e1463]:
+                    - generic [ref=e1464]: 初恋
+                    - generic [ref=e1465]:
+                      - generic [ref=e1466]:
+                        - img [ref=e1467]
+                        - text: "0"
+                      - generic [ref=e1470]:
+                        - img [ref=e1471]
+                        - text: "6"
+                - link "查看 学校财务分析 详情" [ref=e1473] [cursor=pointer]:
+                  - /url: /skills/finance-record
+                  - img "学校财务分析 图标" [ref=e1474]
+                  - generic [ref=e1475]:
+                    - generic [ref=e1476]: 学校财务分析
+                    - generic [ref=e1477]:
+                      - generic [ref=e1478]:
+                        - img [ref=e1479]
+                        - text: "0"
+                      - generic [ref=e1482]:
+                        - img [ref=e1483]
+                        - text: "5"
+                - link "查看 学生流失分析 详情" [ref=e1485] [cursor=pointer]:
+                  - /url: /skills/student-loss-analyzer
+                  - img "学生流失分析 图标" [ref=e1486]
+                  - generic [ref=e1487]:
+                    - generic [ref=e1488]: 学生流失分析
+                    - generic [ref=e1489]:
+                      - generic [ref=e1490]:
+                        - img [ref=e1491]
+                        - text: "0"
+                      - generic [ref=e1494]:
+                        - img [ref=e1495]
+                        - text: "5"
+                - link "查看 招生任务管理 详情" [ref=e1497] [cursor=pointer]:
+                  - /url: /skills/task-tracker-claw
+                  - img "招生任务管理 图标" [ref=e1498]
+                  - generic [ref=e1499]:
+                    - generic [ref=e1500]: 招生任务管理
+                    - generic [ref=e1501]:
+                      - generic [ref=e1502]:
+                        - img [ref=e1503]
+                        - text: "0"
+                      - generic [ref=e1506]:
+                        - img [ref=e1507]
+                        - text: "7"
+                - link "查看 socratic-business-model-canvas（苏格拉底追问式商业模式画布） 详情" [ref=e1509] [cursor=pointer]:
+                  - /url: /skills/business-model-canvas-socratic
+                  - generic [ref=e1510]: S
+                  - generic [ref=e1511]:
+                    - generic [ref=e1512]: socratic-business-model-canvas（苏格拉底追问式商业模式画布）
+                    - generic [ref=e1513]:
+                      - generic [ref=e1514]:
+                        - img [ref=e1515]
+                        - text: "0"
+                      - generic [ref=e1518]:
+                        - img [ref=e1519]
+                        - text: "6"
+                - link "查看 淘股吧股票分析精选 详情" [ref=e1521] [cursor=pointer]:
+                  - /url: /skills/taoguba
+                  - img "淘股吧股票分析精选 图标" [ref=e1522]
+                  - generic [ref=e1523]:
+                    - generic [ref=e1524]: 淘股吧股票分析精选
+                    - generic [ref=e1525]:
+                      - generic [ref=e1526]:
+                        - img [ref=e1527]
+                        - text: "0"
+                      - generic [ref=e1530]:
+                        - img [ref=e1531]
+                        - text: "7"
+                - link "查看 市场机会研究报告生成器 详情" [ref=e1533] [cursor=pointer]:
+                  - /url: /skills/market-opportunity-research
+                  - generic [ref=e1534]: 市
+                  - generic [ref=e1535]:
+                    - generic [ref=e1536]: 市场机会研究报告生成器
+                    - generic [ref=e1537]:
+                      - generic [ref=e1538]:
+                        - img [ref=e1539]
+                        - text: "0"
+                      - generic [ref=e1542]:
+                        - img [ref=e1543]
+                        - text: "9"
+                - link "查看 测试图标 详情" [ref=e1545] [cursor=pointer]:
+                  - /url: /skills/test-icon-url
+                  - img "测试图标 图标" [ref=e1546]
+                  - generic [ref=e1547]:
+                    - generic [ref=e1548]: 测试图标
+                    - generic [ref=e1549]:
+                      - generic [ref=e1550]:
+                        - img [ref=e1551]
+                        - text: "0"
+                      - generic [ref=e1554]:
+                        - img [ref=e1555]
+                        - text: "5"
+                - link "查看 tianque-payment 详情" [ref=e1557] [cursor=pointer]:
+                  - /url: /skills/tianque-payment
+                  - generic [ref=e1558]: T
+                  - generic [ref=e1559]:
+                    - generic [ref=e1560]: tianque-payment
+                    - generic [ref=e1561]:
+                      - generic [ref=e1562]:
+                        - img [ref=e1563]
+                        - text: "0"
+                      - generic [ref=e1566]:
+                        - img [ref=e1567]
+                        - text: "5"
+                - link "查看 产业生态研究报告生成器 详情" [ref=e1569] [cursor=pointer]:
+                  - /url: /skills/industry-ecosystem-research
+                  - generic [ref=e1570]: 产
+                  - generic [ref=e1571]:
+                    - generic [ref=e1572]: 产业生态研究报告生成器
+                    - generic [ref=e1573]:
+                      - generic [ref=e1574]:
+                        - img [ref=e1575]
+                        - text: "0"
+                      - generic [ref=e1578]:
+                        - img [ref=e1579]
+                        - text: "12"
+                - link "查看 虾皮市场罗盘 详情" [ref=e1581] [cursor=pointer]:
+                  - /url: /skills/xiapi-market-compass
+                  - generic [ref=e1582]: 虾
+                  - generic [ref=e1583]:
+                    - generic [ref=e1584]: 虾皮市场罗盘
+                    - generic [ref=e1585]:
+                      - generic [ref=e1586]:
+                        - img [ref=e1587]
+                        - text: "0"
+                      - generic [ref=e1590]:
+                        - img [ref=e1591]
+                        - text: "4"
+                - link "查看 好好先生 详情" [ref=e1593] [cursor=pointer]:
+                  - /url: /skills/haohaoxiansheng
+                  - generic [ref=e1594]: 好
+                  - generic [ref=e1595]:
+                    - generic [ref=e1596]: 好好先生
+                    - generic [ref=e1597]:
+                      - generic [ref=e1598]:
+                        - img [ref=e1599]
+                        - text: "0"
+                      - generic [ref=e1602]:
+                        - img [ref=e1603]
+                        - text: "9"
+                - link "查看 a-harness-auto-post 详情" [ref=e1605] [cursor=pointer]:
+                  - /url: /skills/a-harness-auto-post
+                  - generic [ref=e1606]: A
+                  - generic [ref=e1607]:
+                    - generic [ref=e1608]: a-harness-auto-post
+                    - generic [ref=e1609]:
+                      - generic [ref=e1610]:
+                        - img [ref=e1611]
+                        - text: "0"
+                      - generic [ref=e1614]:
+                        - img [ref=e1615]
+                        - text: "5"
+                - link "查看 敏感信息检测与可逆脱敏工具 详情" [ref=e1617] [cursor=pointer]:
+                  - /url: /skills/sensitive-detector
+                  - generic [ref=e1618]: 敏
+                  - generic [ref=e1619]:
+                    - generic [ref=e1620]: 敏感信息检测与可逆脱敏工具
+                    - generic [ref=e1621]:
+                      - generic [ref=e1622]:
+                        - img [ref=e1623]
+                        - text: "0"
+                      - generic [ref=e1626]:
+                        - img [ref=e1627]
+                        - text: "7"
+                - link "查看 企享云-企业风控和经营异常 详情" [ref=e1629] [cursor=pointer]:
+                  - /url: /skills/qixiangyun-enterprise-risk-skill
+                  - generic [ref=e1630]: 企
+                  - generic [ref=e1631]:
+                    - generic [ref=e1632]: 企享云-企业风控和经营异常
+                    - generic [ref=e1633]:
+                      - generic [ref=e1634]:
+                        - img [ref=e1635]
+                        - text: "0"
+                      - generic [ref=e1638]:
+                        - img [ref=e1639]
+                        - text: "5"
+                - link "查看 企享云-企业开票信息查询 详情" [ref=e1641] [cursor=pointer]:
+                  - /url: /skills/qixiangyun-enterprise-invoice-info-skill
+                  - generic [ref=e1642]: 企
+                  - generic [ref=e1643]:
+                    - generic [ref=e1644]: 企享云-企业开票信息查询
+                    - generic [ref=e1645]:
+                      - generic [ref=e1646]:
+                        - img [ref=e1647]
+                        - text: "0"
+                      - generic [ref=e1650]:
+                        - img [ref=e1651]
+                        - text: "5"
+                - link "查看 企享云-票据查验和发票验真 详情" [ref=e1653] [cursor=pointer]:
+                  - /url: /skills/qixiangyun-bill-verification-skill
+                  - generic [ref=e1654]: 企
+                  - generic [ref=e1655]:
+                    - generic [ref=e1656]: 企享云-票据查验和发票验真
+                    - generic [ref=e1657]:
+                      - generic [ref=e1658]:
+                        - img [ref=e1659]
+                        - text: "0"
+                      - generic [ref=e1662]:
+                        - img [ref=e1663]
+                        - text: "5"
+                - link "查看 企享云-票据OCR识别 详情" [ref=e1665] [cursor=pointer]:
+                  - /url: /skills/qixiangyun-bill-ocr-skill
+                  - generic [ref=e1666]: 企
+                  - generic [ref=e1667]:
+                    - generic [ref=e1668]: 企享云-票据OCR识别
+                    - generic [ref=e1669]:
+                      - generic [ref=e1670]:
+                        - img [ref=e1671]
+                        - text: "0"
+                      - generic [ref=e1674]:
+                        - img [ref=e1675]
+                        - text: "5"
+                - link "查看 meituan-travel 详情" [ref=e1677] [cursor=pointer]:
+                  - /url: /skills/meituan-travel
+                  - generic [ref=e1678]: M
+                  - generic [ref=e1679]:
+                    - generic [ref=e1680]: meituan-travel
+                    - generic [ref=e1681]:
+                      - generic [ref=e1682]:
+                        - img [ref=e1683]
+                        - text: "0"
+                      - generic [ref=e1686]:
+                        - img [ref=e1687]
+                        - text: "11"
+                - link "查看 NEP论文情报官 详情" [ref=e1689] [cursor=pointer]:
+                  - /url: /skills/nep-watcher
+                  - generic [ref=e1690]: "N"
+                  - generic [ref=e1691]:
+                    - generic [ref=e1692]: NEP论文情报官
+                    - generic [ref=e1693]:
+                      - generic [ref=e1694]:
+                        - img [ref=e1695]
+                        - text: "0"
+                      - generic [ref=e1698]:
+                        - img [ref=e1699]
+                        - text: "5"
+                - link "查看 llm-wiki 详情" [ref=e1701] [cursor=pointer]:
+                  - /url: /skills/llm-wiki-pro
+                  - generic [ref=e1702]: L
+                  - generic [ref=e1703]:
+                    - generic [ref=e1704]: llm-wiki
+                    - generic [ref=e1705]:
+                      - generic [ref=e1706]:
+                        - img [ref=e1707]
+                        - text: "0"
+                      - generic [ref=e1710]:
+                        - img [ref=e1711]
+                        - text: "9"
+                - link "查看 MeiHuaYi 详情" [ref=e1713] [cursor=pointer]:
+                  - /url: /skills/meihuayi
+                  - generic [ref=e1714]: M
+                  - generic [ref=e1715]:
+                    - generic [ref=e1716]: MeiHuaYi
+                    - generic [ref=e1717]:
+                      - generic [ref=e1718]:
+                        - img [ref=e1719]
+                        - text: "0"
+                      - generic [ref=e1722]:
+                        - img [ref=e1723]
+                        - text: "6"
+                - link "查看 genstory ai story generator 详情" [ref=e1725] [cursor=pointer]:
+                  - /url: /skills/genstory-ai-story-generator
+                  - generic [ref=e1726]: G
+                  - generic [ref=e1727]:
+                    - generic [ref=e1728]: genstory ai story generator
+                    - generic [ref=e1729]:
+                      - generic [ref=e1730]:
+                        - img [ref=e1731]
+                        - text: "0"
+                      - generic [ref=e1734]:
+                        - img [ref=e1735]
+                        - text: "6"
+                - link "查看 Feishu Send Image Message 详情" [ref=e1737] [cursor=pointer]:
+                  - /url: /skills/feishu-send-image-message
+                  - generic [ref=e1738]: F
+                  - generic [ref=e1739]:
+                    - generic [ref=e1740]: Feishu Send Image Message
+                    - generic [ref=e1741]:
+                      - generic [ref=e1742]:
+                        - img [ref=e1743]
+                        - text: "0"
+                      - generic [ref=e1746]:
+                        - img [ref=e1747]
+                        - text: "8"
+                - link "查看 openclaw-feishu-send-file 详情" [ref=e1749] [cursor=pointer]:
+                  - /url: /skills/openclaw-feishu-send-file
+                  - generic [ref=e1750]: O
+                  - generic [ref=e1751]:
+                    - generic [ref=e1752]: openclaw-feishu-send-file
+                    - generic [ref=e1753]:
+                      - generic [ref=e1754]:
+                        - img [ref=e1755]
+                        - text: "0"
+                      - generic [ref=e1758]:
+                        - img [ref=e1759]
+                        - text: "8"
+                - link "查看 zhipu-usage 详情" [ref=e1761] [cursor=pointer]:
+                  - /url: /skills/zhipu-usage
+                  - generic [ref=e1762]: Z
+                  - generic [ref=e1763]:
+                    - generic [ref=e1764]: zhipu-usage
+                    - generic [ref=e1765]:
+                      - generic [ref=e1766]:
+                        - img [ref=e1767]
+                        - text: "0"
+                      - generic [ref=e1770]:
+                        - img [ref=e1771]
+                        - text: "7"
+                - link "查看 基于深度学习图片与文字本地脱敏工具 详情" [ref=e1773] [cursor=pointer]:
+                  - /url: /skills/image-text-desensitization
+                  - generic [ref=e1774]: 基
+                  - generic [ref=e1775]:
+                    - generic [ref=e1776]: 基于深度学习图片与文字本地脱敏工具
+                    - generic [ref=e1777]:
+                      - generic [ref=e1778]:
+                        - img [ref=e1779]
+                        - text: "0"
+                      - generic [ref=e1782]:
+                        - img [ref=e1783]
+                        - text: "7"
+                - link "查看 特朗普言论分析和意图分析 详情" [ref=e1785] [cursor=pointer]:
+                  - /url: /skills/trumpskills
+                  - generic [ref=e1786]: 特
+                  - generic [ref=e1787]:
+                    - generic [ref=e1788]: 特朗普言论分析和意图分析
+                    - generic [ref=e1789]:
+                      - generic [ref=e1790]:
+                        - img [ref=e1791]
+                        - text: "0"
+                      - generic [ref=e1794]:
+                        - img [ref=e1795]
+                        - text: "23"
+                - link "查看 期货实时监测系统 详情" [ref=e1797] [cursor=pointer]:
+                  - /url: /skills/futures-monitor
+                  - generic [ref=e1798]: 期
+                  - generic [ref=e1799]:
+                    - generic [ref=e1800]: 期货实时监测系统
+                    - generic [ref=e1801]:
+                      - generic [ref=e1802]:
+                        - img [ref=e1803]
+                        - text: "0"
+                      - generic [ref=e1806]:
+                        - img [ref=e1807]
+                        - text: "25"
+                - link "查看 Markdown转流程图 详情" [ref=e1809] [cursor=pointer]:
+                  - /url: /skills/markdown-to-flowchart
+                  - generic [ref=e1810]: M
+                  - generic [ref=e1811]:
+                    - generic [ref=e1812]: Markdown转流程图
+                    - generic [ref=e1813]:
+                      - generic [ref=e1814]:
+                        - img [ref=e1815]
+                        - text: "0"
+                      - generic [ref=e1818]:
+                        - img [ref=e1819]
+                        - text: "9"
+                - link "查看 度慧文档转换-文档转PDF 详情" [ref=e1821] [cursor=pointer]:
+                  - /url: /skills/duhui-all-to-pdf
+                  - generic [ref=e1822]: 度
+                  - generic [ref=e1823]:
+                    - generic [ref=e1824]: 度慧文档转换-文档转PDF
+                    - generic [ref=e1825]:
+                      - generic [ref=e1826]:
+                        - img [ref=e1827]
+                        - text: "0"
+                      - generic [ref=e1830]:
+                        - img [ref=e1831]
+                        - text: "7"
+                - link "查看 蘭泰式按摩（Lann Thai Massage）预约技能 详情" [ref=e1833] [cursor=pointer]:
+                  - /url: /skills/lann-booking-skill
+                  - generic [ref=e1834]: 蘭
+                  - generic [ref=e1835]:
+                    - generic [ref=e1836]: 蘭泰式按摩（Lann Thai Massage）预约技能
+                    - generic [ref=e1837]:
+                      - generic [ref=e1838]:
+                        - img [ref=e1839]
+                        - text: "0"
+                      - generic [ref=e1842]:
+                        - img [ref=e1843]
+                        - text: "6"
+                - link "查看 朋友圈神器 详情" [ref=e1845] [cursor=pointer]:
+                  - /url: /skills/moments-shenqi
+                  - generic [ref=e1846]: 朋
+                  - generic [ref=e1847]:
+                    - generic [ref=e1848]: 朋友圈神器
+                    - generic [ref=e1849]:
+                      - generic [ref=e1850]:
+                        - img [ref=e1851]
+                        - text: "0"
+                      - generic [ref=e1854]:
+                        - img [ref=e1855]
+                        - text: "32"
+                - link "查看 seedance-video-prompt-architect 详情" [ref=e1857] [cursor=pointer]:
+                  - /url: /skills/seedance-video-prompt-architect
+                  - generic [ref=e1858]: S
+                  - generic [ref=e1859]:
+                    - generic [ref=e1860]: seedance-video-prompt-architect
+                    - generic [ref=e1861]:
+                      - generic [ref=e1862]:
+                        - img [ref=e1863]
+                        - text: "0"
+                      - generic [ref=e1866]:
+                        - img [ref=e1867]
+                        - text: "8"
+                - link "查看 AI Validator - 智能交互验证官 详情" [ref=e1869] [cursor=pointer]:
+                  - /url: /skills/ai-validator
+                  - generic [ref=e1870]: A
+                  - generic [ref=e1871]:
+                    - generic [ref=e1872]: AI Validator - 智能交互验证官
+                    - generic [ref=e1873]:
+                      - generic [ref=e1874]:
+                        - img [ref=e1875]
+                        - text: "0"
+                      - generic [ref=e1878]:
+                        - img [ref=e1879]
+                        - text: "12"
+                - link "查看 钉钉文档配置读取 详情" [ref=e1881] [cursor=pointer]:
+                  - /url: /skills/dingtalkwuuxiangdoc
+                  - generic [ref=e1882]: 钉
+                  - generic [ref=e1883]:
+                    - generic [ref=e1884]: 钉钉文档配置读取
+                    - generic [ref=e1885]:
+                      - generic [ref=e1886]:
+                        - img [ref=e1887]
+                        - text: "0"
+                      - generic [ref=e1890]:
+                        - img [ref=e1891]
+                        - text: "9"
+                - link "查看 md-to-word 详情" [ref=e1893] [cursor=pointer]:
+                  - /url: /skills/md-t-wd
+                  - generic [ref=e1894]: M
+                  - generic [ref=e1895]:
+                    - generic [ref=e1896]: md-to-word
+                    - generic [ref=e1897]:
+                      - generic [ref=e1898]:
+                        - img [ref=e1899]
+                        - text: "0"
+                      - generic [ref=e1902]:
+                        - img [ref=e1903]
+                        - text: "11"
+                - link "查看 OpenClaw 智能自动化助手（销售演示版）v1 详情" [ref=e1905] [cursor=pointer]:
+                  - /url: /skills/openclaw-sales-dashboarddemo-v1
+                  - generic [ref=e1906]: O
+                  - generic [ref=e1907]:
+                    - generic [ref=e1908]: OpenClaw 智能自动化助手（销售演示版）v1
+                    - generic [ref=e1909]:
+                      - generic [ref=e1910]:
+                        - img [ref=e1911]
+                        - text: "0"
+                      - generic [ref=e1914]:
+                        - img [ref=e1915]
+                        - text: "14"
+                - link "查看 小程序云测 详情" [ref=e1917] [cursor=pointer]:
+                  - /url: /skills/minitest
+                  - generic [ref=e1918]: 小
+                  - generic [ref=e1919]:
+                    - generic [ref=e1920]: 小程序云测
+                    - generic [ref=e1921]:
+                      - generic [ref=e1922]:
+                        - img [ref=e1923]
+                        - text: "0"
+                      - generic [ref=e1926]:
+                        - img [ref=e1927]
+                        - text: "9"
+                - link "查看 OpenClaw 智能自动化助手（销售演示版） 详情" [ref=e1929] [cursor=pointer]:
+                  - /url: /skills/openclaw-sales-dashboarddemo
+                  - generic [ref=e1930]: O
+                  - generic [ref=e1931]:
+                    - generic [ref=e1932]: OpenClaw 智能自动化助手（销售演示版）
+                    - generic [ref=e1933]:
+                      - generic [ref=e1934]:
+                        - img [ref=e1935]
+                        - text: "0"
+                      - generic [ref=e1938]:
+                        - img [ref=e1939]
+                        - text: "6"
+      - generic [ref=e1942]:
+        - heading "专为中国用户优化的 AI Skills 社区" [level=2] [ref=e1943]
+        - img "致谢：衷心感谢每一位 Skill 作者与实践分享者，携手共建国内 AI 生产力生态，共筑创新价值。" [ref=e1944]
+    - contentinfo [ref=e1945]:
+      - generic [ref=e1946]:
+        - generic [ref=e1948]:
+          - generic [ref=e1949]:
+            - link "SkillHub 首页" [ref=e1950] [cursor=pointer]:
+              - /url: /
+              - img "SkillHub Logo" [ref=e1952]
+            - paragraph [ref=e1953]: 专为中国用户优化的 AI Skills 社区，让每位开发者都能快速构建强大的应用。
+          - generic [ref=e1954]:
+            - generic [ref=e1955]:
+              - heading "快捷入口" [level=3] [ref=e1956]
+              - generic [ref=e1957]:
+                - link "公告列表" [ref=e1958] [cursor=pointer]:
+                  - /url: /announcements
+                  - img [ref=e1959]
+                  - text: 公告列表
+                - link "服务协议" [ref=e1962] [cursor=pointer]:
+                  - /url: https://privacy.qq.com/document/preview/5bd4610b10f043d98df5dd69233cc3b3
+                  - img [ref=e1963]
+                  - text: 服务协议
+                - link "隐私协议" [ref=e1966] [cursor=pointer]:
+                  - /url: https://privacy.qq.com/document/preview/af7cf7a60e444f93a3fbff81c929cca8
+                  - img [ref=e1967]
+                  - text: 隐私协议
+                - link "建议反馈" [ref=e1970] [cursor=pointer]:
+                  - /url: https://wj.qq.com/s2/26026989/0c20
+                  - img [ref=e1971]
+                  - text: 建议反馈
+            - generic [ref=e1974]:
+              - heading "友情链接" [level=3] [ref=e1975]
+              - link "ClawHub" [ref=e1977] [cursor=pointer]:
+                - /url: https://clawhub.ai
+                - img [ref=e1978]
+                - text: ClawHub
+        - generic [ref=e1982]:
+          - generic [ref=e1983]:
+            - paragraph [ref=e1984]: 来源声明：本站部分 Skill 技能内容来源于互联网或由用户上传，使用前请注意识别相关风险，内容版权归原作者所有。
+            - paragraph [ref=e1985]:
+              - text: 侵权处理：如Skill技能涉及版权问题，请发送邮件至
+              - link "skillhub_ipr@tencent.com" [ref=e1986] [cursor=pointer]:
+                - /url: mailto:skillhub_ipr@tencent.com
+              - text: ，我们将在收到通知后及时核实并予以下架处理。
+          - generic [ref=e1987]:
+            - paragraph [ref=e1988]: Copyright © 2026 SkillHub. 精选 AI Skills 推荐平台
+            - paragraph [ref=e1989]:
+              - text: 技能数据来源于
+              - link "ClawHub" [ref=e1990] [cursor=pointer]:
+                - /url: https://clawhub.ai
+              - text: 及用户自主上传
+            - paragraph [ref=e1991]:
+              - link "京ICP备11018762号-1062" [ref=e1992] [cursor=pointer]:
+                - /url: https://beian.miit.gov.cn/#/Integrated/index
+  - region "Notifications alt+T"
+  - link "建议反馈" [ref=e1993] [cursor=pointer]:
+    - /url: https://wj.qq.com/s2/26026989/0c20
+    - generic [ref=e1994]: 建议反馈
