@@ -5,10 +5,14 @@ const STOOQ_SYMBOLS: Array<{ symbol: string; name: string; nameZh: string; group
   { symbol: '^SPX', name: 'S&P 500',   nameZh: '标普500',  group: 'us' },
   { symbol: '^NDQ', name: 'NASDAQ',    nameZh: '纳斯达克', group: 'us' },
   { symbol: '^DJI', name: 'Dow Jones', nameZh: '道琼斯',   group: 'us' },
+  { symbol: '^VIX', name: 'VIX',       nameZh: 'VIX恐慌',  group: 'us' },
   { symbol: '^HSI', name: 'Hang Seng', nameZh: '恒生指数', group: 'hk' },
   { symbol: 'GC.F', name: 'Gold XAU',  nameZh: '黄金',     group: 'commodity' },
   { symbol: 'CL.F', name: 'WTI Oil',   nameZh: 'WTI原油',  group: 'commodity' },
+  { symbol: 'BZ.F', name: 'Brent Oil', nameZh: '布伦特油', group: 'commodity' },
   { symbol: 'DX.F', name: 'USD Index', nameZh: '美元指数', group: 'fx' },
+  { symbol: 'BTC.V', name: 'Bitcoin',  nameZh: '比特币',   group: 'crypto' },
+  { symbol: 'ETH.V', name: 'Ethereum', nameZh: '以太坊',   group: 'crypto' },
 ];
 
 // ── Tencent Finance for A-share indices (accessible from mainland servers) ───
@@ -78,9 +82,9 @@ export async function fetchYahooQuotes(): Promise<Quote[]> {
     fetchTencentQuotes(),
   ]);
 
-  // Preserve display order: US, HK, CN, Commodity, FX
+  // Preserve display order: US, HK, CN, Commodity, FX, Crypto
   const all = [...stooqResults, ...tencentResults];
-  const order: Quote['group'][] = ['us', 'hk', 'cn', 'commodity', 'fx'];
+  const order: Quote['group'][] = ['us', 'hk', 'cn', 'commodity', 'fx', 'crypto'];
   return order.flatMap(g => all.filter(q => q.group === g));
 }
 

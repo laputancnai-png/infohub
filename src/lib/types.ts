@@ -27,7 +27,7 @@ export interface Quote {
   value: string;
   change: string;
   up: boolean;
-  group: 'us' | 'hk' | 'cn' | 'commodity' | 'fx';
+  group: 'us' | 'hk' | 'cn' | 'commodity' | 'fx' | 'crypto';
 }
 
 export interface AgentSkill {

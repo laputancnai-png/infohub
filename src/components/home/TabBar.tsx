@@ -15,13 +15,13 @@ interface TabBarProps {
 }
 
 const TABS: { id: Tab; label: string }[] = [
+  { id: 'skills', label: 'Agent Skills' },
   { id: 'github', label: 'GitHub 热门 / Trending' },
   { id: 'hn',     label: 'Hacker News' },
-  { id: 'skills', label: 'Agent Skills' },
 ];
 
 export function TabBar({ repos, news, skillhubSkills, clawhubSkills }: TabBarProps) {
-  const [active, setActive] = useState<Tab>('github');
+  const [active, setActive] = useState<Tab>('skills');
 
   const tabCls = (id: Tab) =>
     `text-[13px] px-4 py-1.5 rounded-full border transition-all ${
