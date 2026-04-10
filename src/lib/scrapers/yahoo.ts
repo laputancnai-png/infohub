@@ -58,7 +58,9 @@ async function fetchTencentQuotes(): Promise<Quote[]> {
     if (!res.ok) return TENCENT_SYMBOLS.map(blank);
     const text = await res.text();
     return TENCENT_SYMBOLS.map(sym => {
-      const match = text.match(new RegExp(`v_${sym.code}="[^"]*~([\\d.]+)~([\\d.-]+)~([\\d.-]+)`));
+      // Tencent format: v_s_sh000001="1~名称~代码~价格~涨跌额~涨跌%~..."
+      // Use non-greedy field matching to anchor to the correct positions
+      const match = text.match(new RegExp(`v_${sym.code}="[^~]+~[^~]+~[^~]+~([\\d.]+)~([\\d.-]+)~([\\d.-]+)`));
       if (!match) return blank(sym);
       const value = parseFloat(match[1]);
       const changePct = parseFloat(match[3]);
