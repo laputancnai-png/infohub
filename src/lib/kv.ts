@@ -86,7 +86,7 @@ export const MOCK_QUOTES: Quote[] = [
   { symbol: '399001.SZ',name: 'SZSE Comp.',nameZh: '深证成指',  value: '10,124.56', change: '−0.14%', up: false, group: 'cn' },
   { symbol: 'GC=F',     name: 'Gold XAU',  nameZh: '黄金',      value: '2,318.40',  change: '+0.61%', up: true,  group: 'commodity' },
   { symbol: 'CL=F',     name: 'WTI Oil',   nameZh: 'WTI原油',   value: '82.41',     change: '−0.33%', up: false, group: 'commodity' },
-  { symbol: 'BZ=F',     name: 'Brent Oil', nameZh: '布伦特油',  value: '86.12',     change: '−0.28%', up: false, group: 'commodity' },
+  { symbol: 'BZ=F',     name: 'Brent Oil', nameZh: '布伦特油',  value: '65.58',     change: '−0.28%', up: false, group: 'commodity' },
   { symbol: 'DX-Y.NYB', name: 'USD Index', nameZh: '美元指数',  value: '104.22',    change: '−0.09%', up: false, group: 'fx' },
   { symbol: 'BTC-USD',  name: 'Bitcoin',   nameZh: '比特币',    value: '67,482.30', change: '+1.84%', up: true,  group: 'crypto' },
   { symbol: 'ETH-USD',  name: 'Ethereum',  nameZh: '以太坊',    value: '3,124.50',  change: '+0.92%', up: true,  group: 'crypto' },

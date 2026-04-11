@@ -2,17 +2,21 @@ import type { Quote } from '../types';
 
 // ── Stooq symbols for international markets ─────────────────────────────────
 const STOOQ_SYMBOLS: Array<{ symbol: string; name: string; nameZh: string; group: Quote['group'] }> = [
-  { symbol: '^SPX', name: 'S&P 500',   nameZh: '标普500',  group: 'us' },
-  { symbol: '^NDQ', name: 'NASDAQ',    nameZh: '纳斯达克', group: 'us' },
-  { symbol: '^DJI', name: 'Dow Jones', nameZh: '道琼斯',   group: 'us' },
-  { symbol: '^VIX', name: 'VIX',       nameZh: 'VIX恐慌',  group: 'us' },
-  { symbol: '^HSI', name: 'Hang Seng', nameZh: '恒生指数', group: 'hk' },
-  { symbol: 'GC.F', name: 'Gold XAU',  nameZh: '黄金',     group: 'commodity' },
-  { symbol: 'CL.F', name: 'WTI Oil',   nameZh: 'WTI原油',  group: 'commodity' },
-  { symbol: 'BZ.F', name: 'Brent Oil', nameZh: '布伦特油', group: 'commodity' },
-  { symbol: 'DX.F', name: 'USD Index', nameZh: '美元指数', group: 'fx' },
-  { symbol: 'BTC.V', name: 'Bitcoin',  nameZh: '比特币',   group: 'crypto' },
-  { symbol: 'ETH.V', name: 'Ethereum', nameZh: '以太坊',   group: 'crypto' },
+  { symbol: '^SPX',  name: 'S&P 500',   nameZh: '标普500',  group: 'us' },
+  { symbol: '^NDQ',  name: 'NASDAQ',    nameZh: '纳斯达克', group: 'us' },
+  { symbol: '^DJI',  name: 'Dow Jones', nameZh: '道琼斯',   group: 'us' },
+  { symbol: '^HSI',  name: 'Hang Seng', nameZh: '恒生指数', group: 'hk' },
+  { symbol: 'GC.F',  name: 'Gold XAU',  nameZh: '黄金',     group: 'commodity' },
+  { symbol: 'CL.F',  name: 'WTI Oil',   nameZh: 'WTI原油',  group: 'commodity' },
+  { symbol: 'DX.F',  name: 'USD Index', nameZh: '美元指数', group: 'fx' },
+  { symbol: 'BTC.V', name: 'Bitcoin',   nameZh: '比特币',   group: 'crypto' },
+  { symbol: 'ETH.V', name: 'Ethereum',  nameZh: '以太坊',   group: 'crypto' },
+];
+
+// ── Yahoo Finance for symbols not available on Stooq ─────────────────────────
+const YAHOO_SYMBOLS: Array<{ symbol: string; yahooSymbol: string; name: string; nameZh: string; group: Quote['group'] }> = [
+  { symbol: '^VIX', yahooSymbol: '%5EVIX', name: 'VIX',       nameZh: 'VIX恐慌',  group: 'us' },
+  { symbol: 'BZ=F', yahooSymbol: 'BZ%3DF', name: 'Brent Oil', nameZh: '布伦特油', group: 'commodity' },
 ];
 
 // ── Tencent Finance for A-share indices (accessible from mainland servers) ───
@@ -36,6 +40,34 @@ async function fetchStooqQuote(sym: typeof STOOQ_SYMBOLS[0]): Promise<Quote> {
     const close = parseFloat(parts[6]);
     const prev = parseFloat(parts[8]);
     if (!prev || isNaN(close) || isNaN(prev)) return blank();
+    const changePct = ((close - prev) / prev) * 100;
+    const up = changePct >= 0;
+    return {
+      symbol: sym.symbol,
+      name: sym.name,
+      nameZh: sym.nameZh,
+      value: formatPrice(close),
+      change: `${up ? '+' : ''}${changePct.toFixed(2)}%`,
+      up,
+      group: sym.group,
+    };
+  } catch { return blank(); }
+}
+
+async function fetchYahooQuote(sym: typeof YAHOO_SYMBOLS[0]): Promise<Quote> {
+  const blank = (): Quote => ({ symbol: sym.symbol, name: sym.name, nameZh: sym.nameZh, value: '—', change: '—', up: true, group: sym.group });
+  try {
+    const res = await fetch(
+      `https://query1.finance.yahoo.com/v8/finance/chart/${sym.yahooSymbol}?interval=1d&range=1d`,
+      { headers: { 'User-Agent': 'Mozilla/5.0' }, next: { revalidate: 0 } }
+    );
+    if (!res.ok) return blank();
+    const json = await res.json();
+    const meta = json?.chart?.result?.[0]?.meta;
+    if (!meta) return blank();
+    const close = meta.regularMarketPrice as number;
+    const prev = (meta.chartPreviousClose ?? meta.previousClose) as number;
+    if (!close || !prev) return blank();
     const changePct = ((close - prev) / prev) * 100;
     const up = changePct >= 0;
     return {
@@ -79,13 +111,14 @@ async function fetchTencentQuotes(): Promise<Quote[]> {
 }
 
 export async function fetchYahooQuotes(): Promise<Quote[]> {
-  const [stooqResults, tencentResults] = await Promise.all([
+  const [stooqResults, yahooResults, tencentResults] = await Promise.all([
     Promise.all(STOOQ_SYMBOLS.map(fetchStooqQuote)),
+    Promise.all(YAHOO_SYMBOLS.map(fetchYahooQuote)),
     fetchTencentQuotes(),
   ]);
 
   // Preserve display order: US, HK, CN, Commodity, FX, Crypto
-  const all = [...stooqResults, ...tencentResults];
+  const all = [...stooqResults, ...yahooResults, ...tencentResults];
   const order: Quote['group'][] = ['us', 'hk', 'cn', 'commodity', 'fx', 'crypto'];
   return order.flatMap(g => all.filter(q => q.group === g));
 }
