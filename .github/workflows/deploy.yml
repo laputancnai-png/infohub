@@ -1,0 +1,27 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 47.250.134.90
+          username: root
+          key: ${{ secrets.SSH_DEPLOY_KEY }}
+          script: |
+            set -e
+            cd /opt/infohub
+            git fetch origin
+            git reset --hard origin/master
+            npm install
+            npm run build
+            fuser -k 3003/tcp || true
+            systemctl restart infohub
+            sleep 5
+            systemctl is-active infohub
